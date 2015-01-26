@@ -1,0 +1,251 @@
+fileFormatVersion: 2
+guid: 7e6a314a514402f46915a32090d3562f
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fishattack
+    21300002: fishattack_0
+    21300004: fishattack_1
+    21300006: fishattack_2
+    21300008: fishattack_3
+    21300010: fishattack_4
+    21300012: fishattack_5
+    21300014: fishattack_6
+    21300016: fishattack_7
+    21300018: fishattack_8
+    21300020: fishattack_9
+    21300022: fishattack_10
+    21300024: fishattack_11
+    21300026: fishattack_12
+    21300028: fishattack_13
+    21300030: fishattack_14
+    21300032: fishattack_15
+    21300034: fishattack_16
+    21300036: fishattack_17
+    21300038: fishattack_18
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 0
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 142
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Web
+    maxTextureSize: 4096
+    textureFormat: -1
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: fishattack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_1
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_2
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_3
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_4
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_5
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_6
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_7
+      rect:
+        serializedVersion: 2
+        x: 3024
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_8
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_9
+      rect:
+        serializedVersion: 2
+        x: 3886
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_10
+      rect:
+        serializedVersion: 2
+        x: 4317
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_11
+      rect:
+        serializedVersion: 2
+        x: 4751
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_12
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_13
+      rect:
+        serializedVersion: 2
+        x: 5616
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_14
+      rect:
+        serializedVersion: 2
+        x: 6048
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_15
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_16
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fishattack_17
+      rect:
+        serializedVersion: 2
+        x: 7344
+        y: 0
+        width: 432
+        height: 456
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

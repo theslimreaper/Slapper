@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MoveSelector.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Fader.cs" Line="26" Column="1" />
+      <File FileName="Assets\Scripts\MoveSelector.cs" Line="35" Column="4" />
+      <File FileName="Assets\Scripts\PlayerAnimator.cs" Line="43" Column="35" />
+      <File FileName="Assets\Scripts\CoolDownBars.cs" Line="19" Column="21" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

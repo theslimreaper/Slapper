@@ -1,9 +1,7 @@
 fileFormatVersion: 2
-guid: 74c2c1de7da748244a8f4e739aecce3e
+guid: 294154596247fc74f92e46b3265ac318
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: idle_0
-    21300002: idle_1
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -24,9 +22,9 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 4096
+  maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 1
     mipBias: -1
     wrapMode: 1
@@ -39,31 +37,15 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 303
+  spritePixelsToUnits: 300
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Web
+    maxTextureSize: 4096
+    textureFormat: -1
+    compressionQuality: 50
   spriteSheet:
-    sprites:
-    - name: idle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 147
-        height: 956
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: idle_1
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 0
-        width: 147
-        height: 956
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 

@@ -46,13 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CoolDownBars.cs" />
-     <Compile Include="Assets\Scripts\CountDownTimer.cs" />
-     <Compile Include="Assets\Scripts\Fader.cs" />
-     <Compile Include="Assets\Scripts\GUImanager.cs" />
-     <Compile Include="Assets\Scripts\MoveSelector.cs" />
-     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
-     <Compile Include="Assets\Scripts\player_animator.cs" />
+     <Compile Include="Assets\Old\CoolDownBars.cs" />
+     <Compile Include="Assets\Old\CountDownTimer.cs" />
+     <Compile Include="Assets\Old\Fader.cs" />
+     <Compile Include="Assets\Old\GUImanager.cs" />
+     <Compile Include="Assets\Old\MoveSelector.cs" />
+     <Compile Include="Assets\Old\PlayerAnimator.cs" />
+     <Compile Include="Assets\Old\player_animator.cs" />
+     <Compile Include="Assets\Scripts\EnemyStatus.cs" />
+     <Compile Include="Assets\Scripts\PlayerStatus.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -21,26 +21,28 @@ public class PlayerAnimator : MonoBehaviour {
 		chainNumber++;//move to next portion of the chain
 
 		if(chainNumber>3)//if the whole chain has been completed return to the first attack
+		{
+			moveselect.changeLightAttack();//switches the attack
 			chainNumber=1;
-
+		}
 
 		anim.SetInteger ("CurrentChainNumber", chainNumber);
-		moveselect.changeLightAttack();//switches the attack
+
 
 	}
 
 	public void heavyAttack()//call on button press to start animation
 	{
 		heavyActive = true;//start heavy animation
-		anim.SetBool("HeavyAttack",heavyActive);
+		anim.SetBool("OngoingHeavy",heavyActive);
 
 
 	}
 	public void endHeavy()//call at end of heavy animation to stop looping
 	{
 		heavyActive = false;//start heavy animation
-		anim.SetBool("HeavyAttack",heavyActive);
-		moveselect.changeHeavyAttack ();
+		anim.SetBool("OngoingHeavy",heavyActive);
+		moveselect.changeHeavyAttack ();//pick new ability
 	}
 
 	public void breakChain()

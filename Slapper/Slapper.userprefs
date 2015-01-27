@@ -1,11 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MoveSelector.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerStatus.cs">
     <Files>
-      <File FileName="Assets\Scripts\Fader.cs" Line="26" Column="1" />
-      <File FileName="Assets\Scripts\MoveSelector.cs" Line="35" Column="4" />
-      <File FileName="Assets\Scripts\PlayerAnimator.cs" Line="43" Column="35" />
-      <File FileName="Assets\Scripts\CoolDownBars.cs" Line="19" Column="21" />
+      <File FileName="Assets\Scripts\PlayerStatus.cs" Line="25" Column="85" />
+      <File FileName="Assets\Scripts\EnemyStatus.cs" Line="6" Column="30" />
+      <File FileName="Assets\Old\PlayerAnimator.cs" Line="14" Column="78" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

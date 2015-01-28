@@ -5,6 +5,7 @@ public class PlayerStatus : MonoBehaviour {
 	public int playersHealth;
 	public bool dodgeLeft=false;
 	public bool dodgeRight=false;
+
 	public GameObject enemy;
 	EnemyStatus enemyStat;
 	Animator anim;
@@ -97,12 +98,20 @@ public class PlayerStatus : MonoBehaviour {
 		if(enemyStat.vulnerableLeft==true)
 		{
 			enemyStat.hit();
+			if(enemyStat.enemyhealth<=0)
+			{
+
+			}
 		}
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
 		if(enemyStat.vulnerableRight==true)
 		{
 			enemyStat.hit();
+			if(enemyStat.enemyhealth<=0)
+			{
+
+			}
 		}
 	}
 

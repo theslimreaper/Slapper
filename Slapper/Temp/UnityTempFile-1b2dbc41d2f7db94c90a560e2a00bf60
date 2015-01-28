@@ -49,5 +49,6 @@ Assets/Old/PlayerAnimator.cs
 Assets/Old/player_animator.cs
 Assets/Scripts/EnemyStatus.cs
 Assets/Scripts/PlayerStatus.cs
+Assets/Scripts/UICommands.cs
 -r:"C:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Runtime.Serialization.dll"
 -r:"C:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Xml.Linq.dll"

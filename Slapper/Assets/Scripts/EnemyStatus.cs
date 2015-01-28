@@ -9,6 +9,8 @@ public class EnemyStatus : MonoBehaviour {
 	Animator anim;
 	int quotePicker;
 	public Text message;
+	public Text results;
+	public Image resultsBackground;
 	public Image speechBubble;
 	public GameObject player;
 	PlayerStatus playerStat;
@@ -20,6 +22,8 @@ public class EnemyStatus : MonoBehaviour {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
 		playerStat = player.GetComponent<PlayerStatus> ();
 		timeRemaining = timeBetweenEvents;
+
+		resultsBackground.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -39,7 +43,7 @@ public class EnemyStatus : MonoBehaviour {
 		enemyhealth--;//lose one health
 		if(enemyhealth<=0)
 		{
-			gameOver();
+			gameOver(true);
 		}
 	}
 
@@ -71,7 +75,7 @@ public class EnemyStatus : MonoBehaviour {
 			playerStat.playersHealth--;
 			if(playerStat.playersHealth<=0)
 			{
-				gameOver();
+				gameOver(false);
 			}
 		}
 	}
@@ -80,6 +84,10 @@ public class EnemyStatus : MonoBehaviour {
 		if(playerStat.dodgeRight==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
+			if(playerStat.playersHealth<=0)
+			{
+				gameOver(false);
+			}
 		}
 	}
 
@@ -88,6 +96,17 @@ public class EnemyStatus : MonoBehaviour {
 		anim.SetInteger ("AnimationToStart", 0);
 	}
 
-	public void gameOver(){
+	public void gameOver(bool playerWon)
+	{
+		resultsBackground.gameObject.SetActive (true);
+		Time.timeScale = 0;
+		if(playerWon==true)
+		{
+			results.text="YOU!";
+		}
+		else
+		{
+			results.text="YOUR BRO";
+		}
 	}
 }

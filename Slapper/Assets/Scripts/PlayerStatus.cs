@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerStatus : MonoBehaviour {
 	public int playersHealth;
 	public bool dodgeLeft=false;
 	public bool dodgeRight=false;
-
+	public Image playerHealthbar;
 	public GameObject enemy;
 	EnemyStatus enemyStat;
 	Animator anim;
@@ -73,10 +74,12 @@ public class PlayerStatus : MonoBehaviour {
 
 	public void startLeftDodge()
 	{
+		print ("start left dodge");
 		dodgeLeft = true;
 	}
 	public void startRightDodge()
 	{
+		print ("start right dodge");
 		dodgeRight = true;
 	}
 

@@ -17,6 +17,7 @@ public class EnemyStatus : MonoBehaviour {
 	public float timeBetweenEvents=3;
 	float timeRemaining;
 	int randomNumberHolder;
+	public Image EnemyHealthbar;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
@@ -41,6 +42,7 @@ public class EnemyStatus : MonoBehaviour {
 	public void hit()//call when enemy is hit
 	{
 		enemyhealth--;//lose one health
+		EnemyHealthbar.fillAmount= enemyhealth/ 5.0f;
 		if(enemyhealth<=0)
 		{
 			gameOver(true);
@@ -70,9 +72,10 @@ public class EnemyStatus : MonoBehaviour {
 	}
 	public void leftAttack()
 	{
-		if(playerStat.dodgeLeft==false)//if the player isn't dodging
+		if(playerStat.dodgeRight==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
 			if(playerStat.playersHealth<=0)
 			{
 				gameOver(false);
@@ -81,9 +84,10 @@ public class EnemyStatus : MonoBehaviour {
 	}
 	public void rightAttack()
 	{
-		if(playerStat.dodgeRight==false)//if the player isn't dodging
+		if(playerStat.dodgeLeft==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
 			if(playerStat.playersHealth<=0)
 			{
 				gameOver(false);

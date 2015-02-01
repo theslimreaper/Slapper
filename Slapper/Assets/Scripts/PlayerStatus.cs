@@ -74,24 +74,20 @@ public class PlayerStatus : MonoBehaviour {
 
 	public void startLeftDodge()
 	{
-		print ("start left dodge");
 		dodgeLeft = true;
 	}
 	public void startRightDodge()
 	{
-		print ("start right dodge");
 		dodgeRight = true;
 	}
 
 	public void endLeftDodge()
 	{
-		anim.SetBool ("DodgeLeft", false);
 		dodgeLeft = false;
 	}
 
 	public void endRightDodge()
 	{
-		print ("end right dodge");
 		anim.SetBool ("DodgeRight", false);
 		dodgeRight = false;
 	}

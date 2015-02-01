@@ -23,7 +23,7 @@ public class EnemyStatus : MonoBehaviour {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
 		playerStat = player.GetComponent<PlayerStatus> ();
 		timeRemaining = timeBetweenEvents;
-
+		Time.timeScale = 1;
 		resultsBackground.gameObject.SetActive (false);
 	}
 	

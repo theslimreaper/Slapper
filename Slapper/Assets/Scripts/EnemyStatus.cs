@@ -18,6 +18,7 @@ public class EnemyStatus : MonoBehaviour {
 	float timeRemaining;
 	int randomNumberHolder;
 	public Image EnemyHealthbar;
+	bool needReset=false;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
@@ -29,13 +30,24 @@ public class EnemyStatus : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")&&needReset==true)
+		{
+			print ("returned");
+			anim.SetBool ("Hit", false);
+			anim.SetInteger("AnimationToStart",0);
+			vulnerableLeft=false;
+			vulnerableRight=false;
+			needReset=false;
+			timeRemaining=timeBetweenEvents;
+		}
 		if(timeRemaining<=0)
 		{
+			needReset=true;
 			anim.SetInteger("AnimationToStart",Random.Range(1,5));
 		}
 		else
 			timeRemaining-=Time.deltaTime;
-		anim.SetBool ("Hit", false);
+
 	
 	}
 	public void hit()//call when enemy is hit
@@ -73,7 +85,7 @@ public class EnemyStatus : MonoBehaviour {
 	}
 	public void leftAttack()
 	{
-		if(playerStat.dodgeRight==false)//if the player isn't dodging
+		if(playerStat.dodgeLeft==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
@@ -85,7 +97,7 @@ public class EnemyStatus : MonoBehaviour {
 	}
 	public void rightAttack()
 	{
-		if(playerStat.dodgeLeft==false)//if the player isn't dodging
+		if(playerStat.dodgeRight==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;

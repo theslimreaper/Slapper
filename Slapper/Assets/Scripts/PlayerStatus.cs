@@ -94,23 +94,17 @@ public class PlayerStatus : MonoBehaviour {
 
 
 	public void leftHit(){//call during frame where your attack connects from the left
+		print ("left attack, vulnerable: " + enemyStat.vulnerableLeft);
 		if(enemyStat.vulnerableLeft==true)
 		{
 			enemyStat.hit();
-			if(enemyStat.enemyhealth<=0)
-			{
-
-			}
 		}
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
+		print ("right attack, vulnerable: " + enemyStat.vulnerableRight);
 		if(enemyStat.vulnerableRight==true)
 		{
 			enemyStat.hit();
-			if(enemyStat.enemyhealth<=0)
-			{
-
-			}
 		}
 	}
 

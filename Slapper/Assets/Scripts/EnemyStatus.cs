@@ -31,19 +31,18 @@ public class EnemyStatus : MonoBehaviour {
 	void Update () {
 		if(timeRemaining<=0)
 		{
-			anim.SetInteger("AnimationToStart",Random.Range(1,5));
+			timeRemaining=timeBetweenEvents;
+			anim.SetInteger("AnimationToStart",Random.Range(1,4));
+
 		}
 		else
 			timeRemaining-=Time.deltaTime;
-		anim.SetBool ("Hit", false);
 	
 	}
 	public void hit()//call when enemy is hit
 	{
-		print ("hit");
 		enemyhealth--;//lose one health
 		EnemyHealthbar.fillAmount= enemyhealth/ 5.0f;
-		anim.SetBool("Hit",true);
 		if(enemyhealth<=0)
 		{
 			gameOver(true);
@@ -99,7 +98,6 @@ public class EnemyStatus : MonoBehaviour {
 	public void endAnimation()
 	{
 		anim.SetInteger ("AnimationToStart", 0);
-		timeRemaining=timeBetweenEvents;
 	}
 
 	public void gameOver(bool playerWon)
@@ -112,38 +110,7 @@ public class EnemyStatus : MonoBehaviour {
 		}
 		else
 		{
-			results.text="The Brobot";
-		}
-	}
-
-	public void leftOpen()//call when the left side can be hit
-	{
-		vulnerableLeft = true;
-		print ("left open");
-	}
-
-	public void leftSafe()//call when the left side can no longer be hit
-	{
-		vulnerableLeft = false;
-		print ("left safe");
-	}
-	public void rightOpen()//call when the right side can be hit
-	{
-		vulnerableRight = true;
-		print ("right open");
-	}
-	public void rightSafe()//call when the right side can no longer be hit
-	{
-		vulnerableRight = false;
-		print ("right safe");
-	}
-	public void unblockableAttacks()
-	{
-		playerStat.playersHealth--;
-		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
-		if(playerStat.playersHealth<=0)
-		{
-			gameOver(false);
+			results.text="YOUR BRO";
 		}
 	}
 }

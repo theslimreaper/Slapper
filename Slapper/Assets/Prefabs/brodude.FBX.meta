@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: c3c172975720bc24ca5a701cac47be68
+guid: 2d079955b1d29734f906e9c8a6a7f2f0
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Object001
+    100004: Object002
+    100006: Sphere001
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
+    400002: Object001
+    400004: Object002
+    400006: Sphere001
+    2300000: Object001
+    2300002: Object002
+    2300004: Sphere001
+    3300000: Object001
+    3300002: Object002
+    3300004: Sphere001
     4300000: Sphere001
+    4300002: Object001
+    4300004: Object002
     7400000: Take 001
     9500000: //RootNode
   materials:
@@ -48,7 +60,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 1
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     human: []
     skeleton: []
@@ -59,8 +71,9 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+    rootMotionBoneName: Douchebag
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 17f953d588c8b434f99400f9f9868519,
+    type: 3}
   animationType: 2
   additionalBone: 0
   userData: 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -23,5 +23,10 @@ public class UICommands : MonoBehaviour {
 	public void updateEnemyHealthBar(int maxHealth, int damage)
 	{
 		enemyHealth.fillAmount -= damage / maxHealth;
+	}
+
+	public void loadlevel(string sceneName)
+	{
+		Application.LoadLevel (sceneName);
 	}
 }

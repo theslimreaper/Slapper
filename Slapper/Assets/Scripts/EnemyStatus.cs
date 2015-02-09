@@ -24,7 +24,6 @@ public class EnemyStatus : MonoBehaviour {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
 		playerStat = player.GetComponent<PlayerStatus> ();
 		timeRemaining = timeBetweenEvents;
-		Time.timeScale = 1;
 		resultsBackground.gameObject.SetActive (false);
 	}
 	
@@ -44,6 +43,7 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			needReset=true;
 			anim.SetInteger("AnimationToStart",Random.Range(1,5));
+			print ("new move go");
 		}
 		else
 			timeRemaining-=Time.deltaTime;
@@ -54,7 +54,7 @@ public class EnemyStatus : MonoBehaviour {
 	{
 		print ("hit");
 		enemyhealth--;//lose one health
-		EnemyHealthbar.fillAmount= enemyhealth/ 5.0f;
+		EnemyHealthbar.fillAmount= enemyhealth/ 15.0f;
 		anim.SetBool("Hit",true);
 		if(enemyhealth<=0)
 		{
@@ -69,19 +69,13 @@ public class EnemyStatus : MonoBehaviour {
 		if(quotePicker==1)
 			message.text="DO YOU EVEN LIFT";
 		else if(quotePicker==2)
-			message.text="COME AT ME BRO";
+			message.text="COME AT ME";
 		else if(quotePicker==3)
 			message.text="COOL STORY BRO";
-
-		//make enemy vulnerable
-		vulnerableLeft = true;
-		vulnerableRight = true;
 	}
 	public void endTalk(){
 		speechBubble.enabled=false;
 		message.enabled = false;
-		vulnerableLeft = false;
-		vulnerableRight = false;
 	}
 	public void leftAttack()
 	{
@@ -89,6 +83,7 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			playerStat.playersHealth--;
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
+			audio.Play();
 			if(playerStat.playersHealth<=0)
 			{
 				gameOver(false);
@@ -101,6 +96,7 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			playerStat.playersHealth--;
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
+			audio.Play ();
 			if(playerStat.playersHealth<=0)
 			{
 				gameOver(false);
@@ -153,6 +149,7 @@ public class EnemyStatus : MonoBehaviour {
 	{
 		playerStat.playersHealth--;
 		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
+		audio.Play ();
 		if(playerStat.playersHealth<=0)
 		{
 			gameOver(false);

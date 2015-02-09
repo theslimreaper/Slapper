@@ -8,12 +8,18 @@ public class PlayerStatus : MonoBehaviour {
 	public bool dodgeRight=false;
 	public Image playerHealthbar;
 	public GameObject enemy;
+	public GameObject leftWrist;//used for particle emission
+	public GameObject rightWrist;
 	EnemyStatus enemyStat;
 	Animator anim;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in players animation tree
 		enemyStat = enemy.GetComponent<EnemyStatus> ();
+		AudioListener.volume = MenuFunctions.volumeLevel;
+		print (MenuFunctions.volumeLevel);
+		Time.timeScale = MenuFunctions.gameSpeed;
+		print (MenuFunctions.gameSpeed);
 	}
 
 	// Update is called once per frame
@@ -98,6 +104,8 @@ public class PlayerStatus : MonoBehaviour {
 		if(enemyStat.vulnerableLeft==true)
 		{
 			enemyStat.hit();
+			audio.Play();
+			leftWrist.particleSystem.Emit(5);
 		}
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
@@ -105,6 +113,8 @@ public class PlayerStatus : MonoBehaviour {
 		if(enemyStat.vulnerableRight==true)
 		{
 			enemyStat.hit();
+			audio.Play();
+			rightWrist.particleSystem.Emit (5);
 		}
 	}
 

@@ -33,11 +33,23 @@ public class PlayerStatus : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.M)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			beginRightDodgeAnimation();
 
+		/*Vector3 currentDir;
+		currentDir.x = Input.acceleration.x;
+		if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			beginLeftDodgeAnimation();
+		if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			beginRightDodgeAnimation();     */
+
 		//release the dodge
 		if(Input.GetKeyUp(KeyCode.Z))
 			anim.SetBool("DodgeLeft", false);
 		if(Input.GetKeyUp(KeyCode.M))
 			anim.SetBool("DodgeRight",false);
+
+		/*if(currentDir.x>-0.25)
+			anim.SetBool("DodgeLeft", false);
+		if(currentDir.x<0.25)
+			anim.SetBool("DodgeRight",false);     */
 	}
 	/*********************************
 	 * FUNCTIONS CALLED FROM KEY PRESS

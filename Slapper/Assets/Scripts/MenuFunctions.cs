@@ -6,10 +6,17 @@ public class MenuFunctions : MonoBehaviour {
 	public Image Options;
 	public Text volumeIndicator;
 	public Text speedIndicator;
-	public static float volumeLevel=1;
-	public static float gameSpeed=1;
+	public static float volumeLevel=100.0f;
+	public Scrollbar volumeBar;
+	public static float gameSpeed=1.0f;
+	public Scrollbar speedBar;
 	// Use this for initialization
 	void Start () {
+		if(GameObject.Find ("OptionsButton")!=null)
+		{
+			volumeBar.value = volumeLevel/100f;
+			speedBar.value = gameSpeed;
+		}
 	}
 	
 	// Update is called once per frame
@@ -32,10 +39,11 @@ public class MenuFunctions : MonoBehaviour {
 
 	public void adjustVolume(float value)
 	{
-		AudioListener.volume = value*100;
+		AudioListener.volume = value*100f;
 		volumeLevel = AudioListener.volume;
 		volumeIndicator.text = "Volume: " + (value* 100f).ToString("f0") + "%";
 		volumeIndicator.audio.Play ();
+		print (value);
 	}
 	public void adjustGameSpeed(float value)
 	{

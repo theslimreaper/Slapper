@@ -62,16 +62,22 @@ public class EnemyStatus : MonoBehaviour {
 		}
 	}
 
-	public void Talk(){//call during vulnerable animation 
+	public void FlexTalk(){//call during vulnerable animation 
 		speechBubble.enabled = true;
 		message.enabled = true;
-		quotePicker = Random.Range (1, 4);//random quote 
-		if(quotePicker==1)
-			message.text="DO YOU EVEN LIFT";
-		else if(quotePicker==2)
-			message.text="COME AT ME";
-		else if(quotePicker==3)
-			message.text="COOL STORY BRO";
+		message.text="DO YOU EVEN LIFT";
+	}
+	public void tauntTalk()
+	{
+		speechBubble.enabled = true;
+		message.enabled = true;
+		message.text="COME AT ME";
+	}
+	public void slapTalk()
+	{
+		speechBubble.enabled = true;
+		message.enabled = true;
+		message.text="COOL STORY BRO";
 	}
 	public void endTalk(){
 		speechBubble.enabled=false;

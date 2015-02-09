@@ -65,7 +65,7 @@ public class EnemyStatus : MonoBehaviour {
 	public void FlexTalk(){//call during vulnerable animation 
 		speechBubble.enabled = true;
 		message.enabled = true;
-		message.text="DO YOU EVEN LIFT";
+		message.text="CHECK ME OUT";
 	}
 	public void tauntTalk()
 	{
@@ -77,7 +77,7 @@ public class EnemyStatus : MonoBehaviour {
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
-		message.text="COOL STORY BRO";
+		message.text="WASSUP";
 	}
 	public void endTalk(){
 		speechBubble.enabled=false;

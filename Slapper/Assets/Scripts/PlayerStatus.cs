@@ -24,31 +24,38 @@ public class PlayerStatus : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.Z)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-		   beginLeftDodgeAnimation();
-		if(Input.GetKeyDown(KeyCode.X)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginLeftAttackAnimation();
-		if(Input.GetKeyDown(KeyCode.N)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginRightAttackAnimation();
-		if(Input.GetKeyDown(KeyCode.M)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginRightDodgeAnimation();
-
+		if (Application.platform == RuntimePlatform.WindowsPlayer||Application.platform==RuntimePlatform.WindowsEditor)
+		{
+			if(Input.GetKeyDown(KeyCode.Z)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			   beginLeftDodgeAnimation();
+			if(Input.GetKeyDown(KeyCode.X)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				beginLeftAttackAnimation();
+			if(Input.GetKeyDown(KeyCode.N)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				beginRightAttackAnimation();
+			if(Input.GetKeyDown(KeyCode.M)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				beginRightDodgeAnimation();
+		//release the dodge
+			if(Input.GetKeyUp(KeyCode.Z))
+				anim.SetBool("DodgeLeft", false);
+			if(Input.GetKeyUp(KeyCode.M))
+				anim.SetBool("DodgeRight",false);
+		}
+		if (Application.platform == RuntimePlatform.Android)
+		{
 		Vector3 currentDir;
 		currentDir.x = Input.acceleration.x;
-		if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+		if(currentDir.x<-0.45 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			beginLeftDodgeAnimation();
-		if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginRightDodgeAnimation();     
-		//release the dodge
-		if(Input.GetKeyUp(KeyCode.Z))
-			anim.SetBool("DodgeLeft", false);
-		if(Input.GetKeyUp(KeyCode.M))
-			anim.SetBool("DodgeRight",false);
+		if(currentDir.x>0.45&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			beginRightDodgeAnimation();
+			
+			if(currentDir.x>-0.45)
+				anim.SetBool("DodgeLeft", false);
+			if(currentDir.x<0.45)
+				anim.SetBool("DodgeRight",false);   
+		}
 
-		if(currentDir.x>-0.25)
-			anim.SetBool("DodgeLeft", false);
-		if(currentDir.x<0.25)
-			anim.SetBool("DodgeRight",false);   
+
 	}
 
 	public void leftAttackButton(){

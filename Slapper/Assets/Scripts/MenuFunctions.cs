@@ -10,6 +10,7 @@ public class MenuFunctions : MonoBehaviour {
 	public Scrollbar volumeBar;
 	public static float gameSpeed=1.0f;
 	public Scrollbar speedBar;
+	public GameObject[] androidOnlyObjects;
 	// Use this for initialization
 	void Start () {
 		if(GameObject.Find ("OptionsButton")!=null)
@@ -18,6 +19,13 @@ public class MenuFunctions : MonoBehaviour {
 			speedBar.value = gameSpeed;
 		}
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		if (Application.platform != RuntimePlatform.Android)
+		{
+			for(int i=0;i<androidOnlyObjects.Length;i++)
+			{
+				androidOnlyObjects[i].SetActive(false);
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -33,9 +41,15 @@ public class MenuFunctions : MonoBehaviour {
 	public void OptionsToggle()
 	{
 		if (Options.IsActive())
+		{
 			Options.gameObject.SetActive(false);
+			Time.timeScale=gameSpeed;
+		}
 		else
+		{
 			Options.gameObject.SetActive(true);
+			Time.timeScale=0;
+		}
 	}
 
 	public void adjustVolume(float value)

@@ -6,6 +6,7 @@ public class EnemyStatus : MonoBehaviour {
 	public bool vulnerableLeft;
 	public bool vulnerableRight;
 	public int enemyhealth;
+	float maxEnemyHealth;
 	Animator anim;
 	int quotePicker;
 	public Text message;
@@ -25,6 +26,7 @@ public class EnemyStatus : MonoBehaviour {
 		playerStat = player.GetComponent<PlayerStatus> ();
 		timeRemaining = timeBetweenEvents;
 		resultsBackground.gameObject.SetActive (false);
+		maxEnemyHealth = enemyhealth;
 	}
 	
 	// Update is called once per frame
@@ -42,7 +44,15 @@ public class EnemyStatus : MonoBehaviour {
 		if(timeRemaining<=0)
 		{
 			needReset=true;
-			anim.SetInteger("AnimationToStart",Random.Range(1,5));
+			randomNumberHolder=Random.Range(1,100);
+			if(randomNumberHolder<25)
+				anim.SetInteger("AnimationToStart",1);
+			else if(randomNumberHolder<50)
+				anim.SetInteger("AnimationToStart",3);
+			else if(randomNumberHolder<70)
+				anim.SetInteger("AnimationToStart",4);
+			else if(randomNumberHolder<100)
+				anim.SetInteger("AnimationToStart",2);
 			print ("new move go");
 		}
 		else
@@ -50,11 +60,11 @@ public class EnemyStatus : MonoBehaviour {
 
 	
 	}
-	public void hit()//call when enemy is hit
+	public void hit(int damage)//call when enemy is hit
 	{
 		print ("hit");
-		enemyhealth--;//lose one health
-		EnemyHealthbar.fillAmount= enemyhealth/ 15.0f;
+		enemyhealth-= damage;//lose one health
+		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth;
 		anim.SetBool("Hit",true);
 		if(enemyhealth<=0)
 		{
@@ -88,26 +98,32 @@ public class EnemyStatus : MonoBehaviour {
 		if(playerStat.dodgeLeft==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
-			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
+			playerStat.updateRewardBar(false);
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 			audio.Play();
 			if(playerStat.playersHealth<=0)
 			{
 				gameOver(false);
 			}
 		}
+		else
+			playerStat.updateRewardBar(true);
 	}
 	public void rightAttack()
 	{
 		if(playerStat.dodgeRight==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
-			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
+			playerStat.updateRewardBar(false);
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 			audio.Play ();
 			if(playerStat.playersHealth<=0)
 			{
 				gameOver(false);
 			}
 		}
+		else
+			playerStat.updateRewardBar(true);
 	}
 
 	public void endAnimation()
@@ -154,7 +170,8 @@ public class EnemyStatus : MonoBehaviour {
 	public void unblockableAttacks()
 	{
 		playerStat.playersHealth--;
-		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/5.0f;
+		playerStat.updateRewardBar(false);
+		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 		audio.Play ();
 		if(playerStat.playersHealth<=0)
 		{

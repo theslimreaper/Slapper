@@ -10,8 +10,16 @@ public class PlayerStatus : MonoBehaviour {
 	public GameObject enemy;
 	public GameObject leftWrist;//used for particle emission
 	public GameObject rightWrist;
+	public bool rewardOn=true;
+	public Image rewardBar;
+	public Text rewardText;
+	[HideInInspector]
+	public int rewardCounter=0;
+	[HideInInspector]
+	public float maxPlayerHealth;
 	EnemyStatus enemyStat;
 	Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in players animation tree
@@ -20,6 +28,7 @@ public class PlayerStatus : MonoBehaviour {
 		print (MenuFunctions.volumeLevel);
 		Time.timeScale = MenuFunctions.gameSpeed;
 		print (MenuFunctions.gameSpeed);
+		maxPlayerHealth = playersHealth;
 	}
 
 	// Update is called once per frame
@@ -138,20 +147,49 @@ public class PlayerStatus : MonoBehaviour {
 		print ("left attack, vulnerable: " + enemyStat.vulnerableLeft);
 		if(enemyStat.vulnerableLeft==true)
 		{
-			enemyStat.hit();
+			updateRewardBar(true);
+			if(rewardCounter<5)//if 5 dodges without being hit double the damage
+				enemyStat.hit(1);
+			else
+				enemyStat.hit (2);
 			audio.Play();
-			leftWrist.particleSystem.Emit(5);
+			leftWrist.particleSystem.Emit(5);	
 		}
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
 		print ("right attack, vulnerable: " + enemyStat.vulnerableRight);
 		if(enemyStat.vulnerableRight==true)
 		{
-			enemyStat.hit();
+			updateRewardBar(true);
+			if(rewardCounter<5)//if 5 dodges without being hit double the damage
+				enemyStat.hit(1);
+			else
+				enemyStat.hit (2);
 			audio.Play();
 			rightWrist.particleSystem.Emit (5);
 		}
 	}
+	public void updateRewardBar(bool plus)
+	{
+		if (plus==true)
+		{
+			if(rewardCounter<5)
+			{
+				rewardCounter++;
+				rewardBar.fillAmount+= .2f;
+			}
+			if(rewardCounter>=5)
+			{
+				rewardText.gameObject.SetActive(true);
+			}
 
+		}
+		else
+		{
+			rewardBar.fillAmount=0.0f;
+			rewardCounter=0;
+			rewardText.gameObject.SetActive(false);
 
+		}
+	}
 }

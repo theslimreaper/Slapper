@@ -20,7 +20,9 @@ public class LightShifter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentTime = directionChangeTimer;
+		enraged = false;
 		PointLight.color = Color.blue;
+
 	}
 	
 	// Update is called once per frame

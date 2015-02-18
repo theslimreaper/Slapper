@@ -14,7 +14,8 @@ public class EnemyStatus : MonoBehaviour {
 	public Image speechBubble;
 	public GameObject player;
 	PlayerStatus playerStat;
-	public float timeBetweenEvents=3;
+	public float maxTimeBetweenEvents=2;
+	public float minTimeBetweenEvents=1;
 	float timeRemaining;
 	int randomNumberHolder;
 	public Image EnemyHealthbar;
@@ -28,7 +29,7 @@ public class EnemyStatus : MonoBehaviour {
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
 		playerStat = player.GetComponent<PlayerStatus> ();
-		timeRemaining = timeBetweenEvents;
+		timeRemaining = maxTimeBetweenEvents;
 		resultsBackground.gameObject.SetActive (false);
 		maxEnemyHealth = enemyhealth;
 		leftSystem = leftHand.GetComponent<ParticleSystem> ();
@@ -37,7 +38,7 @@ public class EnemyStatus : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")&&needReset==true)
+		if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("Enraged Idle"))&&needReset==true)
 		{
 //			print ("returned");
 			anim.SetBool ("Hit", false);
@@ -45,7 +46,7 @@ public class EnemyStatus : MonoBehaviour {
 			vulnerableLeft=false;
 			vulnerableRight=false;
 			needReset=false;
-			timeRemaining=timeBetweenEvents;
+			timeRemaining=Random.Range (minTimeBetweenEvents,maxTimeBetweenEvents);
 		}
 		if(timeRemaining<=0)
 		{
@@ -57,11 +58,12 @@ public class EnemyStatus : MonoBehaviour {
 				anim.SetInteger("AnimationToStart",2);
 			else if(randomNumberHolder<=100)
 				anim.SetInteger("AnimationToStart",3);
-//			print ("new move go");
 		}
 		else
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("Enraged Idle"))
+		{
 			timeRemaining-=Time.deltaTime;
-
+		}
 
 	
 	}
@@ -111,13 +113,13 @@ public class EnemyStatus : MonoBehaviour {
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
-		message.text="WASSUP";
+		message.text="WHATCHA GON DO BOUT IT";
 	}
 	public void youBastardTalk()
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
-		message.text="COME ON";
+		message.text="aww look at ya";
 	}
 
 	public void LeftHandRightAttack()//four different ways the normal attacks would be delivered
@@ -134,6 +136,7 @@ public class EnemyStatus : MonoBehaviour {
 				gameOver(false);
 			}
 		}
+		playerStat.updateRewardBar(true);
 	}
 	public void LeftHandLeftAttack()
 	{
@@ -149,6 +152,8 @@ public class EnemyStatus : MonoBehaviour {
 				gameOver(false);
 			}
 		}
+		else
+			playerStat.updateRewardBar(true);
 	}
 	public void RightHandLeftAttack()
 	{
@@ -164,6 +169,8 @@ public class EnemyStatus : MonoBehaviour {
 				gameOver(false);
 			}
 		}
+		else
+			playerStat.updateRewardBar(true);
 	}
 	public void RightHandRightAttack()
 	{
@@ -179,11 +186,13 @@ public class EnemyStatus : MonoBehaviour {
 				gameOver(false);
 			}
 		}
+		else
+			playerStat.updateRewardBar(true);
 	}
 	public void endAnimation()
 	{
 		anim.SetInteger ("AnimationToStart", 0);
-		timeRemaining=timeBetweenEvents;
+		timeRemaining = Random.Range (minTimeBetweenEvents, maxTimeBetweenEvents);
 	}
 
 	public void gameOver(bool playerWon)

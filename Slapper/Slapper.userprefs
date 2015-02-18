@@ -1,11 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuFunctions.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyStatus.cs">
     <Files>
-      <File FileName="Assets\Scripts\LightShifter.cs" Line="70" Column="56" />
-      <File FileName="Assets\Scripts\EnemyStatus.cs" Line="80" Column="47" />
-      <File FileName="Assets\Scripts\PlayerStatus.cs" Line="30" Column="4" />
-      <File FileName="Assets\Scripts\MenuFunctions.cs" Line="85" Column="1" />
+      <File FileName="Assets\Scripts\EnemyStatus.cs" Line="258" Column="20" />
+      <File FileName="Assets\Scripts\LightShifter.cs" Line="70" Column="55" />
+      <File FileName="Assets\Scripts\PlayerStatus.cs" Line="14" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -54,6 +54,7 @@
      <Compile Include="Assets\Old\PlayerAnimator.cs" />
      <Compile Include="Assets\Old\player_animator.cs" />
      <Compile Include="Assets\Scripts\EnemyStatus.cs" />
+     <Compile Include="Assets\Scripts\LightShifter.cs" />
      <Compile Include="Assets\Scripts\MenuFunctions.cs" />
      <Compile Include="Assets\Scripts\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\UICommands.cs" />

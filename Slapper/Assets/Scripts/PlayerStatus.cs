@@ -25,9 +25,9 @@ public class PlayerStatus : MonoBehaviour {
 		anim = GetComponent<Animator> ();//used to set parameters in players animation tree
 		enemyStat = enemy.GetComponent<EnemyStatus> ();
 		AudioListener.volume = MenuFunctions.volumeLevel;
-		print (MenuFunctions.volumeLevel);
+	//	print (MenuFunctions.volumeLevel);
 		Time.timeScale = MenuFunctions.gameSpeed;
-		print (MenuFunctions.gameSpeed);
+	//	print (MenuFunctions.gameSpeed);
 		maxPlayerHealth = playersHealth;
 	}
 
@@ -37,9 +37,9 @@ public class PlayerStatus : MonoBehaviour {
 		{
 			if(Input.GetKeyDown(KeyCode.Z)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			   beginLeftDodgeAnimation();
-			if(Input.GetKeyDown(KeyCode.X)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if(Input.GetKeyDown(KeyCode.X))
 				beginLeftAttackAnimation();
-			if(Input.GetKeyDown(KeyCode.N)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if(Input.GetKeyDown(KeyCode.N))
 				beginRightAttackAnimation();
 			if(Input.GetKeyDown(KeyCode.M)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 				beginRightDodgeAnimation();
@@ -49,18 +49,19 @@ public class PlayerStatus : MonoBehaviour {
 			if(Input.GetKeyUp(KeyCode.M))
 				anim.SetBool("DodgeRight",false);
 		}
-		if (Application.platform == RuntimePlatform.Android)
+		if (Application.platform == RuntimePlatform.Android&&MenuFunctions.accelerometer==true)
 		{
 		Vector3 currentDir;
 		currentDir.x = Input.acceleration.x;
-		if(currentDir.x<-0.45 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+
+		if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			beginLeftDodgeAnimation();
-		if(currentDir.x>0.45&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+		if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			beginRightDodgeAnimation();
 			
-			if(currentDir.x>-0.45)
+			if(currentDir.x>-0.25)
 				anim.SetBool("DodgeLeft", false);
-			if(currentDir.x<0.45)
+			if(currentDir.x<0.25)
 				anim.SetBool("DodgeRight",false);   
 		}
 
@@ -133,6 +134,7 @@ public class PlayerStatus : MonoBehaviour {
 
 	public void endLeftDodge()
 	{
+		anim.SetBool ("DodgeLeft", false);
 		dodgeLeft = false;
 	}
 
@@ -144,7 +146,7 @@ public class PlayerStatus : MonoBehaviour {
 
 
 	public void leftHit(){//call during frame where your attack connects from the left
-		print ("left attack, vulnerable: " + enemyStat.vulnerableLeft);
+		//print ("left attack, vulnerable: " + enemyStat.vulnerableLeft);
 		if(enemyStat.vulnerableLeft==true)
 		{
 			updateRewardBar(true);
@@ -157,7 +159,7 @@ public class PlayerStatus : MonoBehaviour {
 		}
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
-		print ("right attack, vulnerable: " + enemyStat.vulnerableRight);
+	//	print ("right attack, vulnerable: " + enemyStat.vulnerableRight);
 		if(enemyStat.vulnerableRight==true)
 		{
 			updateRewardBar(true);

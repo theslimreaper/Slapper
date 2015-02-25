@@ -38,8 +38,8 @@ public class LightShifter : MonoBehaviour {
 			z2=Random.Range (minSpeed,maxSpeed);
 			currentTime=directionChangeTimer;
 		}
-		spotLight1.transform.Rotate (x1, y1, z1);
-		spotLight2.transform.Rotate (x2, y2, z2);
+		spotLight1.transform.Rotate (x1*Time.timeScale, y1*Time.timeScale, z1*Time.timeScale);
+		spotLight2.transform.Rotate (x2*Time.timeScale, y2*Time.timeScale, z2*Time.timeScale);
 		if(hitTimer>0)
 		{
 			hitTimer -= Time.deltaTime;
@@ -69,7 +69,7 @@ public class LightShifter : MonoBehaviour {
 			spotLight2.enabled=true;
 		}
 		if(enraged==true)
-			PointLight.color=Color.Lerp(Color.blue, Color.red,1f);
+			PointLight.color=Color.Lerp(Color.blue, Color.red,1);
 	}
 
 	public static void hit(float percent) {

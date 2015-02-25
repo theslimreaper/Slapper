@@ -15,6 +15,10 @@ public class MenuFunctions : MonoBehaviour {
 	public Image accelerometerChecked;
 	public GameObject dodgeLeftButton;
 	public GameObject dodgeRightButton;
+	public Sprite muted;
+	public Sprite unmuted;
+
+	public Image controlsMenu;
 	// Use this for initialization
 	void Start () {
 		if(GameObject.Find ("OptionsButton")!=null)
@@ -116,4 +120,31 @@ public class MenuFunctions : MonoBehaviour {
 		}
 
 	}
+
+	public void toggleMute()
+	{
+		if (AudioListener.volume==0)
+		{
+			AudioListener.volume=volumeLevel;
+			Options.sprite=unmuted;
+		}
+		else
+		{
+			AudioListener.volume=0;
+			Options.sprite=muted;
+		}
+	}
+
+	public void toggleControls()
+	{
+		if (controlsMenu.IsActive())
+		{
+			controlsMenu.gameObject.SetActive(false);
+		}
+		else
+		{
+			controlsMenu.gameObject.SetActive(true);
+		}
+	}
+
 }

@@ -67,13 +67,21 @@ public class EnemyStatus : MonoBehaviour {
 
 	
 	}
-	public void hit(int damage)//call when enemy is hit
+	public void hit(int damage, bool vulnerable)//call when enemy is hit
 	{
-	//	print ("hit");
-		enemyhealth-= damage;//lose one health
-		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth;//update health bar
+		if (vulnerable)
+		{
+			enemyhealth-= 5*damage;//lose one health
+			anim.SetBool("Hit",true);
+		}
+		else
+			enemyhealth--;
+
+		
+
+
 		LightShifter.hit (enemyhealth/maxEnemyHealth);
-		anim.SetBool("Hit",true);
+		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth;//update health bar
 		if(enemyhealth/maxEnemyHealth <.35f)//enrage if below 35% of total health
 			anim.SetBool("Enraged",true);
 		if(enemyhealth<=0)//when he dies go to the gameover with a success

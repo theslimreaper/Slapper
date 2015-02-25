@@ -147,15 +147,20 @@ public class PlayerStatus : MonoBehaviour {
 
 	public void leftHit(){//call during frame where your attack connects from the left
 		//print ("left attack, vulnerable: " + enemyStat.vulnerableLeft);
-		if(enemyStat.vulnerableLeft==true)
+		if (enemyStat.vulnerableLeft == true) {
+						updateRewardBar (true);
+						if (rewardCounter < 5)//if 5 dodges without being hit double the damage
+								enemyStat.hit (1, true);
+						else
+								enemyStat.hit (2, true);
+						audio.Play ();
+						leftWrist.particleSystem.Emit (5);	
+				} 
+		else
 		{
-			updateRewardBar(true);
-			if(rewardCounter<5)//if 5 dodges without being hit double the damage
-				enemyStat.hit(1);
-			else
-				enemyStat.hit (2);
-			audio.Play();
-			leftWrist.particleSystem.Emit(5);	
+			enemyStat.hit (1, false);//if the enemy isnt vulnerable do small damage
+			audio.Play ();
+			leftWrist.particleSystem.Emit (2);
 		}
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
@@ -164,11 +169,17 @@ public class PlayerStatus : MonoBehaviour {
 		{
 			updateRewardBar(true);
 			if(rewardCounter<5)//if 5 dodges without being hit double the damage
-				enemyStat.hit(1);
+				enemyStat.hit(1,true);
 			else
-				enemyStat.hit (2);
+				enemyStat.hit (2,true);
 			audio.Play();
 			rightWrist.particleSystem.Emit (5);
+		}
+		else
+		{
+			enemyStat.hit (1,false);
+			audio.Play();
+			rightWrist.particleSystem.Emit (2);
 		}
 	}
 	public void updateRewardBar(bool plus)

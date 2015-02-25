@@ -32,7 +32,7 @@ public class CameraControl : MonoBehaviour {
 		rRotate = Quaternion.Euler(0,-rotAngle,0)*cameraRot;
 	}
 
-	void FixedUpdate(){
+	void Update(){
 		Vector3 standardPos = playerT.position + relCameraPos;
 		Vector3 leftPos = cameraPos - camMove;
 		Vector3 rightPos = cameraPos + camMove;

@@ -10,6 +10,10 @@ public class PlayerStatus : MonoBehaviour {
 	public GameObject enemy;
 	public GameObject leftWrist;//used for particle emission
 	public GameObject rightWrist;
+	public ControlsSetup controls;
+	private Vector2 fp=new Vector2();
+	private Vector2 lp=new Vector2();
+	public float swipeSens = 50f;
 	public bool rewardOn=true;
 	public Image rewardBar;
 	public Text rewardText;
@@ -51,38 +55,119 @@ public class PlayerStatus : MonoBehaviour {
 		}
 		if (Application.platform == RuntimePlatform.Android&&MenuFunctions.accelerometer==true)
 		{
-		Vector3 currentDir;
-		currentDir.x = Input.acceleration.x;
+			if(controls.dodgeChoice==1)//dodge tilt controls
+			{
+				Vector3 currentDir;
+				currentDir.x = Input.acceleration.x;
+				if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+					beginLeftDodgeAnimation();
+				if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+					beginRightDodgeAnimation();
+				if(currentDir.x>-0.25)
+					anim.SetBool("DodgeLeft", false);
+				if(currentDir.x<0.25)
+					anim.SetBool("DodgeRight",false);   
+			}
+			else if(controls.dodgeChoice==3)//dodge swipe controls
+			{
+				//Touch touch = Input.touches[0];
 
-		if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginLeftDodgeAnimation();
-		if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginRightDodgeAnimation();
-			
-			if(currentDir.x>-0.25)
-				anim.SetBool("DodgeLeft", false);
-			if(currentDir.x<0.25)
-				anim.SetBool("DodgeRight",false);   
+				foreach(Touch touch in Input.touches)
+				{
+					if(touch.phase==TouchPhase.Began)
+					{
+						fp=touch.position;
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Moved)
+					{
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Ended)
+					{
+						if(fp.x-lp.x>swipeSens)//left swipe
+						{
+							beginLeftDodgeAnimation();
+						}
+						else if(fp.x-lp.x<-swipeSens)//right swipe
+						{
+							beginRightDodgeAnimation();
+						}
+					}
+				}
+			}
+			if(controls.attackChoice==1)//attack tilt
+			{
+				Vector3 currentDir;
+				currentDir.x = Input.acceleration.x;
+				if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+					beginLeftAttackAnimation();
+				if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+					beginRightAttackAnimation();
+			}
+			else if(controls.attackChoice==3)//attack swipe
+			{
+				//Touch touch = Input.touches[0];
+				//Vector2 fp=new Vector2();
+				//Vector2 lp=new Vector2();
+				foreach(Touch touch in Input.touches)
+				{
+					if(touch.phase==TouchPhase.Began)
+					{
+						fp=touch.position;
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Moved)
+					{
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Ended)
+					{
+						if(fp.x-lp.x>swipeSens)//left swipe
+						{
+							if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+								beginRightAttackAnimation();
+						}
+						else if(fp.x-lp.x<-swipeSens)//right swipe
+						{
+							if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+								beginLeftAttackAnimation();
+						}
+					}
+				}
+			}
 		}
 
 
 	}
 
 	public void leftAttackButton(){
-		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginLeftAttackAnimation();
+		if(controls.attackChoice==2)
+		{
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				beginLeftAttackAnimation();
+		}
 	}
 	public void rightAttackButton(){
-		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginRightAttackAnimation();
+		if(controls.attackChoice==2)
+		{
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				beginRightAttackAnimation();
+		}
 	}
 	public void leftDodgeButton(){
-		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginLeftDodgeAnimation();
+		if(controls.dodgeChoice==2)
+		{
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				beginLeftDodgeAnimation();
+		}
 	}
 	public void rightDodgeButton(){
-		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-			beginRightDodgeAnimation();
+		if(controls.dodgeChoice==2)
+		{
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				beginRightDodgeAnimation();
+		}
 	}
 	/*********************************
 	 * FUNCTIONS CALLED FROM KEY PRESS

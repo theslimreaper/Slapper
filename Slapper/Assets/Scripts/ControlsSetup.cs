@@ -8,8 +8,8 @@ public class ControlsSetup : MonoBehaviour {
 	public Sprite TiltSelected;
 	public Image dodgeImage;
 	public Image attackImage;
-	public static int attackChoice=2;//start as tap
-	public static int dodgeChoice=1;//start as tilt
+	public int attackChoice=2;//start as tap
+	public int dodgeChoice=1;//start as tilt
 	int temp;
 	void Start(){
 

@@ -55,7 +55,7 @@ public class PlayerStatus : MonoBehaviour {
 		}
 		if (Application.platform == RuntimePlatform.Android&&MenuFunctions.accelerometer==true)
 		{
-			if(controls.dodgeChoice==1)//dodge tilt controls
+			if(ControlsSetup.dodgeChoice==1)//dodge tilt controls
 			{
 				Vector3 currentDir;
 				currentDir.x = Input.acceleration.x;
@@ -68,10 +68,8 @@ public class PlayerStatus : MonoBehaviour {
 				if(currentDir.x<0.25)
 					anim.SetBool("DodgeRight",false);   
 			}
-			else if(controls.dodgeChoice==3)//dodge swipe controls
+			else if(ControlsSetup.dodgeChoice==3)//dodge swipe controls
 			{
-				//Touch touch = Input.touches[0];
-
 				foreach(Touch touch in Input.touches)
 				{
 					if(touch.phase==TouchPhase.Began)
@@ -96,7 +94,32 @@ public class PlayerStatus : MonoBehaviour {
 					}
 				}
 			}
-			if(controls.attackChoice==1)//attack tilt
+			else if(ControlsSetup.dodgeChoice==2)//dodge tap
+			{
+				foreach(Touch touch in Input.touches)
+				{
+					if(touch.phase==TouchPhase.Began)
+					{
+						fp=touch.position;
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Moved)
+					{
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Ended)
+					{
+						if(fp.x-lp.x<5&&fp.x-lp.x>-5&&fp.y-lp.y<5&&fp.y-lp.y>-5)
+						{
+							if(touch.position.x<Screen.width/2)
+								leftDodgeButton();
+							else if(touch.position.x>Screen.width/2)
+								rightDodgeButton();
+						}
+					}
+				}
+			}
+			if(ControlsSetup.attackChoice==1)//attack tilt
 			{
 				Vector3 currentDir;
 				currentDir.x = Input.acceleration.x;
@@ -105,11 +128,8 @@ public class PlayerStatus : MonoBehaviour {
 				if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 					beginRightAttackAnimation();
 			}
-			else if(controls.attackChoice==3)//attack swipe
+			else if(ControlsSetup.attackChoice==3)//attack swipe
 			{
-				//Touch touch = Input.touches[0];
-				//Vector2 fp=new Vector2();
-				//Vector2 lp=new Vector2();
 				foreach(Touch touch in Input.touches)
 				{
 					if(touch.phase==TouchPhase.Began)
@@ -136,34 +156,58 @@ public class PlayerStatus : MonoBehaviour {
 					}
 				}
 			}
+			else if(ControlsSetup.attackChoice==2)//attack tap
+			{
+				foreach(Touch touch in Input.touches)
+				{
+					if(touch.phase==TouchPhase.Began)
+					{
+						fp=touch.position;
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Moved)
+					{
+						lp=touch.position;
+					}
+					if(touch.phase==TouchPhase.Ended)
+					{
+						if(fp.x-lp.x<5&&fp.x-lp.x>-5&&fp.y-lp.y<5&&fp.y-lp.y>-5)
+						{
+							if(touch.position.x<Screen.width/2)
+								leftAttackButton();
+							else if(touch.position.x>Screen.width/2)
+								rightAttackButton();
+						}
+					}
+				}
+			}
 		}
-
-
 	}
 
+
 	public void leftAttackButton(){
-		if(controls.attackChoice==2)
+		if(ControlsSetup.attackChoice==2)
 		{
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 				beginLeftAttackAnimation();
 		}
 	}
 	public void rightAttackButton(){
-		if(controls.attackChoice==2)
+		if(ControlsSetup.attackChoice==2)
 		{
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 				beginRightAttackAnimation();
 		}
 	}
 	public void leftDodgeButton(){
-		if(controls.dodgeChoice==2)
+		if(ControlsSetup.dodgeChoice==2)
 		{
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 				beginLeftDodgeAnimation();
 		}
 	}
 	public void rightDodgeButton(){
-		if(controls.dodgeChoice==2)
+		if(ControlsSetup.dodgeChoice==2)
 		{
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 				beginRightDodgeAnimation();

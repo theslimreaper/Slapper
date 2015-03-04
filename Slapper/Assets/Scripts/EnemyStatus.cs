@@ -35,6 +35,7 @@ public class EnemyStatus : MonoBehaviour {
 	LightShifter lightsController;
 	bool vulnerable;
 	public Image[] onHitImages;
+	public GameObject bottle;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
@@ -63,12 +64,16 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			needReset=true;
 			randomNumberHolder=Random.Range(1,100);
-			if(randomNumberHolder<30)
+			if(randomNumberHolder<20)
 				anim.SetInteger("AnimationToStart",1);
-			else if(randomNumberHolder<60)
+			else if(randomNumberHolder<40)
 				anim.SetInteger("AnimationToStart",2);
-			else if(randomNumberHolder<=100)
+			else if(randomNumberHolder<60)
 				anim.SetInteger("AnimationToStart",3);
+			else if(randomNumberHolder<80)
+				anim.SetInteger("AnimationToStart",4);
+			else if(randomNumberHolder<=100)
+				anim.SetInteger("AnimationToStart",5);
 		}
 		else
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("Enraged Idle"))
@@ -305,5 +310,12 @@ public class EnemyStatus : MonoBehaviour {
 	{
 		anim.SetBool ("Hit", false);
 		anim.SetBool ("vulnerable",false);
+	}
+
+	public void toggleBottle(){
+		if (bottle.activeSelf)
+			bottle.SetActive (false);
+		else
+			bottle.SetActive(true);
 	}
 }

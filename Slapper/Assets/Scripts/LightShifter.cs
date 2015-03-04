@@ -21,7 +21,7 @@ public class LightShifter : MonoBehaviour {
 	void Start () {
 		currentTime = directionChangeTimer;
 		enraged = false;
-		PointLight.color = Color.blue;
+		PointLight.color = color1;
 
 	}
 	

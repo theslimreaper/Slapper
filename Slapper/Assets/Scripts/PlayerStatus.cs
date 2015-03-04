@@ -23,7 +23,8 @@ public class PlayerStatus : MonoBehaviour {
 	public float maxPlayerHealth;
 	EnemyStatus enemyStat;
 	Animator anim;
-
+	public int headBobTimer=350;
+	int currenttime;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in players animation tree
@@ -183,6 +184,13 @@ public class PlayerStatus : MonoBehaviour {
 				}
 			}
 		}
+
+		if (currenttime > headBobTimer) {
+			anim.SetBool ("HeadMove", true);
+			currenttime=0;
+			headBobTimer=Random.Range (300,500);
+			}
+		currenttime++;
 	}
 
 
@@ -324,4 +332,10 @@ public class PlayerStatus : MonoBehaviour {
 
 		}
 	}
+
+	public void stopBob()
+	{
+		anim.SetBool ("HeadMove", false);
+	}
 }
+

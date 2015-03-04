@@ -12,6 +12,18 @@ public class ControlsSetup : MonoBehaviour {
 	public static int dodgeChoice=1;//start as tilt
 	int temp;
 	void Start(){
+		if (attackChoice == 1)
+			attackImage.sprite = TiltSelected;
+		if (attackChoice == 2)
+			attackImage.sprite=TapSelected;
+		if (attackChoice == 3)
+			attackImage.sprite=SwipeSelected;
+		if(dodgeChoice==1)
+			dodgeImage.sprite=TiltSelected;
+		if(dodgeChoice==2)
+			dodgeImage.sprite=TapSelected;
+		if(dodgeChoice==3)
+			dodgeImage.sprite=SwipeSelected;
 
 	}
 	public void dodgeTilt(){

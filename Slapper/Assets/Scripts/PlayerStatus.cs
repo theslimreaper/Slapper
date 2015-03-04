@@ -29,6 +29,7 @@ public class PlayerStatus : MonoBehaviour {
 		Time.timeScale = MenuFunctions.gameSpeed;
 	//	print (MenuFunctions.gameSpeed);
 		maxPlayerHealth = playersHealth;
+		       
 	}
 
 	// Update is called once per frame
@@ -147,21 +148,16 @@ public class PlayerStatus : MonoBehaviour {
 
 	public void leftHit(){//call during frame where your attack connects from the left
 		//print ("left attack, vulnerable: " + enemyStat.vulnerableLeft);
-		if (enemyStat.vulnerableLeft == true) {
-						updateRewardBar (true);
-						if (rewardCounter < 5)//if 5 dodges without being hit double the damage
-								enemyStat.hit (1, true);
-						else
-								enemyStat.hit (2, true);
-						audio.Play ();
-						leftWrist.particleSystem.Emit (5);	
-				} 
-		else
+		if (enemyStat.vulnerableLeft == true)
 		{
-			enemyStat.hit (1, false);//if the enemy isnt vulnerable do small damage
+			updateRewardBar (true);
+			if (rewardCounter < 5)//if 5 dodges without being hit double the damage
+					enemyStat.hit (1);						
+			else
+				enemyStat.hit (2);
 			audio.Play ();
-			leftWrist.particleSystem.Emit (2);
-		}
+			leftWrist.particleSystem.Emit (5);	
+			} 
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
 	//	print ("right attack, vulnerable: " + enemyStat.vulnerableRight);
@@ -169,17 +165,11 @@ public class PlayerStatus : MonoBehaviour {
 		{
 			updateRewardBar(true);
 			if(rewardCounter<5)//if 5 dodges without being hit double the damage
-				enemyStat.hit(1,true);
+				enemyStat.hit(1);
 			else
-				enemyStat.hit (2,true);
+				enemyStat.hit (2);
 			audio.Play();
 			rightWrist.particleSystem.Emit (5);
-		}
-		else
-		{
-			enemyStat.hit (1,false);
-			audio.Play();
-			rightWrist.particleSystem.Emit (2);
 		}
 	}
 	public void updateRewardBar(bool plus)

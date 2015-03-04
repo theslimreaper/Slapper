@@ -17,15 +17,15 @@ public class MenuFunctions : MonoBehaviour {
 	public GameObject dodgeRightButton;
 	public Sprite muted;
 	public Sprite unmuted;
-
+	public GameObject[] hideDuringOptions;
 	public Image controlsMenu;
 	// Use this for initialization
 	void Start () {
-		if(GameObject.Find ("OptionsButton")!=null)
+	/*	if(GameObject.Find ("OptionsButton")!=null)
 		{
 			volumeBar.value = volumeLevel/100f;
 			speedBar.value = gameSpeed;
-		}
+		}*/
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
 		if (Application.platform != RuntimePlatform.Android)//if not building to android hide the buttons during the fight
 		{
@@ -54,8 +54,9 @@ public class MenuFunctions : MonoBehaviour {
 			dodgeRightButton.SetActive(false);
 			dodgeLeftButton.SetActive(false);
 		}
+		Time.timeScale = 1;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -72,11 +73,19 @@ public class MenuFunctions : MonoBehaviour {
 		{
 			Options.gameObject.SetActive(false);
 			Time.timeScale=gameSpeed;
+			for(int i=0;i<hideDuringOptions.Length;i++)
+			{
+				hideDuringOptions[i].SetActive(true);
+			}
 		}
 		else
 		{
 			Options.gameObject.SetActive(true);
 			Time.timeScale=0;
+			for(int i=0;i<hideDuringOptions.Length;i++)
+			{
+				hideDuringOptions[i].SetActive(false);
+			}
 		}
 	}
 
@@ -140,10 +149,18 @@ public class MenuFunctions : MonoBehaviour {
 		if (controlsMenu.IsActive())
 		{
 			controlsMenu.gameObject.SetActive(false);
+			for(int i=0;i<hideDuringOptions.Length;i++)
+			{
+				hideDuringOptions[i].SetActive(true);
+			}
 		}
 		else
 		{
 			controlsMenu.gameObject.SetActive(true);
+			for(int i=0;i<hideDuringOptions.Length;i++)
+			{
+				hideDuringOptions[i].SetActive(false);
+			}
 		}
 	}
 

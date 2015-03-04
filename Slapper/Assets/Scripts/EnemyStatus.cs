@@ -9,8 +9,16 @@ public class EnemyStatus : MonoBehaviour {
 	float maxEnemyHealth;
 	Animator anim;
 	public Text message;
-	public Text results;
+
 	public Image resultsBackground;
+	public GameObject winAnimation;
+	public GameObject loseAnimation;
+	public Image resultsSpeech;
+	public Sprite winSpeech;
+	public Sprite loseSpeech;
+	public Image resultsMain;
+	public Sprite winResult;
+	public Sprite loseResult;
 	public Image speechBubble;
 	public GameObject player;
 	PlayerStatus playerStat;
@@ -25,6 +33,8 @@ public class EnemyStatus : MonoBehaviour {
 	ParticleSystem rightSystem;
 	bool needReset=false;
 	LightShifter lightsController;
+	bool vulnerable;
+	public Image[] onHitImages;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
@@ -48,6 +58,7 @@ public class EnemyStatus : MonoBehaviour {
 			needReset=false;
 			timeRemaining=Random.Range (minTimeBetweenEvents,maxTimeBetweenEvents);
 		}
+
 		if(timeRemaining<=0)
 		{
 			needReset=true;
@@ -67,19 +78,15 @@ public class EnemyStatus : MonoBehaviour {
 
 	
 	}
-	public void hit(int damage, bool vulnerable)//call when enemy is hit
+	public void hit(int damage)//call when enemy is hit
 	{
-		if (vulnerable)
-		{
-			enemyhealth-= 5*damage;//lose one health
+			enemyhealth-= damage;//lose one health
 			anim.SetBool("Hit",true);
+		if(vulnerable)
+		{
+			anim.SetBool ("vulnerable",true);
 		}
-		else
-			enemyhealth--;
-
-		
-
-
+		onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		LightShifter.hit (enemyhealth/maxEnemyHealth);
 		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth;//update health bar
 		if(enemyhealth/maxEnemyHealth <.35f)//enrage if below 35% of total health
@@ -143,6 +150,8 @@ public class EnemyStatus : MonoBehaviour {
 			{
 				gameOver(false);
 			}
+			else
+				onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		}
 		playerStat.updateRewardBar(true);
 	}
@@ -159,6 +168,8 @@ public class EnemyStatus : MonoBehaviour {
 			{
 				gameOver(false);
 			}
+			else
+				onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		}
 		else
 			playerStat.updateRewardBar(true);
@@ -176,6 +187,8 @@ public class EnemyStatus : MonoBehaviour {
 			{
 				gameOver(false);
 			}
+			else
+				onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		}
 		else
 			playerStat.updateRewardBar(true);
@@ -193,6 +206,8 @@ public class EnemyStatus : MonoBehaviour {
 			{
 				gameOver(false);
 			}
+			else
+				onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		}
 		else
 			playerStat.updateRewardBar(true);
@@ -206,15 +221,20 @@ public class EnemyStatus : MonoBehaviour {
 	public void gameOver(bool playerWon)
 	{
 		resultsBackground.gameObject.SetActive (true);
-		Time.timeScale = 0;
 		if(playerWon==true)
 		{
-			results.text="YOU!";
+			winAnimation.SetActive(true);
+			resultsSpeech.sprite=winSpeech;
+			resultsMain.sprite=winResult;
 		}
 		else
 		{
-			results.text="The Brobot";
+			loseAnimation.SetActive(true);
+			resultsSpeech.sprite=loseSpeech;
+			resultsMain.sprite=loseResult;
 		}
+		player.SetActive (false);
+		gameObject.SetActive (false);
 	}
 
 	public void leftOpen()//call when the left side can be hit
@@ -250,9 +270,12 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			gameOver(false);
 		}
+		else
+			onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 	}
 	public void RightHandUnblockable()
 	{
+		playerStat.playersHealth--;
 		playerStat.updateRewardBar(false);
 		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 		audio.Play ();
@@ -261,10 +284,26 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			gameOver(false);
 		}
+		else
+			onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 	}
+	public void toggleVulnerable()
+	{
+		if(vulnerable==true)
+		{
+			vulnerable=false;
 
+		}
+		else
+		{
+			vulnerable=true;
+
+		}
+		print ("vulnerable" + vulnerable);
+	}
 	public void hitOff()
 	{
 		anim.SetBool ("Hit", false);
+		anim.SetBool ("vulnerable",false);
 	}
 }

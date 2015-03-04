@@ -69,11 +69,11 @@ public class LightShifter : MonoBehaviour {
 			spotLight2.enabled=true;
 		}
 		if(enraged==true)
-			PointLight.color=Color.Lerp(Color.blue, Color.red,1);
+			PointLight.color=Color.Lerp(Color.blue, Color.red,Time.deltaTime);
 	}
 
 	public static void hit(float percent) {
-		print (percent + " % ");
+	//	print (percent + " % ");
 		hitTimer = maxHitFlickerTime;
 		if(percent<.35f)
 			enraged=true;

@@ -38,12 +38,18 @@ public class FightChoiceSlider : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (Input.GetKeyDown (KeyCode.Z))
+			previousFightButton ();
+		if(Input.GetKeyDown(KeyCode.M))
+			nextFightButton();
+
+
+
+
+
 		if (currentFightNumber == 1) {
 			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (1,1,-10),temp/timeToShift);//(startPos.x-transform.position.x)/startPos.x)
 			temp+=Time.deltaTime;
-			firstCharacter.renderer.material.SetColor ("_Color", Color.white);
-			secondCharacter.renderer.material.SetColor ("_Color", Color.black);
-			thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
 
 			header.sprite=firstHeader;
 			quote.sprite=firstQuote;
@@ -52,10 +58,10 @@ public class FightChoiceSlider : MonoBehaviour {
 		if (currentFightNumber == 2) {
 			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (19,1,-10),temp/timeToShift);	
 			temp+=Time.deltaTime;
-			firstCharacter.renderer.material.SetColor ("_Color", Color.black);
-			secondCharacter.renderer.material.SetColor ("_Color", Color.black);
-			thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
-
+			if(secondCompleted)
+				secondCharacter.renderer.material.SetColor ("_Color", Color.white);
+			else
+				secondCharacter.renderer.material.SetColor ("_Color", Color.black);
 			header.sprite=secondHeader;
 			quote.sprite=secondQuote;
 
@@ -67,10 +73,10 @@ public class FightChoiceSlider : MonoBehaviour {
 		if (currentFightNumber == 3) {
 			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (34,1,-10),temp/timeToShift);
 			temp+=Time.deltaTime;
-			firstCharacter.renderer.material.SetColor ("_Color", Color.black);
-			secondCharacter.renderer.material.SetColor ("_Color", Color.black);
-			thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
-
+			if(thirdCompleted)
+				thirdCharacter.renderer.material.SetColor ("_Color", Color.white);
+			else
+				thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
 			header.sprite=thirdHeader;
 			quote.sprite=thirdQuote;
 

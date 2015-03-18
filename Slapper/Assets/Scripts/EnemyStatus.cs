@@ -114,6 +114,7 @@ public class EnemyStatus : MonoBehaviour {
 		if(enemyhealth<=0)//when he dies go to the gameover with a success
 		{
 			gameOver(true);
+			FightChoiceSlider.secondCompleted=true;
 		}
 	}
 

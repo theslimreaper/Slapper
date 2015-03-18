@@ -8,6 +8,7 @@ public class FightChoiceSlider : MonoBehaviour {
 	public Image quote;
 	public Button fightButton;
 	public string[] fightScenes;
+
 	public GameObject firstCharacter;
 	public Sprite firstHeader;
 	public Sprite firstQuote;
@@ -23,6 +24,9 @@ public class FightChoiceSlider : MonoBehaviour {
 	public Sprite thirdQuote;
 	public static bool thirdCompleted = false;
 
+
+	public Sprite noHeader;
+	public Sprite noQuote;
 	Vector3 startPos= new Vector3 (1,1,-10);
 	int currentFightNumber=1;
 	float temp=0.0f;
@@ -61,34 +65,42 @@ public class FightChoiceSlider : MonoBehaviour {
 		if (currentFightNumber == 2) {
 			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (19,1,-10),temp/timeToShift);	
 			temp+=Time.deltaTime;
-			if(secondCompleted)
-				secondCharacter.renderer.material.SetColor ("_Color", Color.white);
-			else
-				secondCharacter.renderer.material.SetColor ("_Color", Color.black);
-			header.sprite=secondHeader;
-			quote.sprite=secondQuote;
-
-			if(secondCompleted)
+			if(firstCompleted)
+			{
+			secondCharacter.renderer.material.SetColor ("_Color", Color.white);
+				header.sprite=secondHeader;
+				quote.sprite=secondQuote;
 				fightButton.interactable=true;
-			else
-				fightButton.interactable=false;
 			}
-		if (currentFightNumber == 3) {
-			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (34,1,-10),temp/timeToShift);
-			temp+=Time.deltaTime;
-			if(thirdCompleted)
-				thirdCharacter.renderer.material.SetColor ("_Color", Color.white);
 			else
-				thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
-			header.sprite=thirdHeader;
-			quote.sprite=thirdQuote;
-
-			if(thirdCompleted)
-				fightButton.interactable=true;
-			else
+			{
+				secondCharacter.renderer.material.SetColor ("_Color", Color.black);
+				header.sprite=noHeader;
+				quote.sprite=noQuote;
 				fightButton.interactable=false;
 			}
 		}
+
+
+		if (currentFightNumber == 3) {
+			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (34,1,-10),temp/timeToShift);
+			temp+=Time.deltaTime;
+			if(secondCompleted)
+			{
+				thirdCharacter.renderer.material.SetColor ("_Color", Color.white);
+				header.sprite=thirdHeader;
+				quote.sprite=thirdQuote;
+				fightButton.interactable=true;
+			}
+			else
+			{
+				thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
+				header.sprite=noHeader;
+				quote.sprite=noQuote;
+				fightButton.interactable=false;
+			}
+		}
+	}
 
 	public void nextFightButton()
 	{

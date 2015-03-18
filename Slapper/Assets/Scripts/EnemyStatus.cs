@@ -43,8 +43,12 @@ public class EnemyStatus : MonoBehaviour {
 	
 	public Texture highNormal;
 	public Texture highSpeech;
+	public Texture highHit;
+	public Texture highAttack;
 	public Texture lowNormal;
 	public Texture lowSpeech;
+	public Texture lowHit;
+	public Texture lowAttack;
 	public GameObject model;
 	// Use this for initialization
 	void Start () {
@@ -105,16 +109,22 @@ public class EnemyStatus : MonoBehaviour {
 		onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		LightShifter.hit (enemyhealth/maxEnemyHealth);
 		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth;//update health bar
+
 		if(enemyhealth/maxEnemyHealth <.35f)//enrage if below 35% of total health
 		{
 			anim.SetBool("Enraged",true);
 			enraged=true;
 			model.renderer.material.mainTexture=lowNormal;
 		}
+
+		if (enraged)
+			model.renderer.material.mainTexture = lowHit;
+		else
+			model.renderer.material.mainTexture=highHit;
 		if(enemyhealth<=0)//when he dies go to the gameover with a success
 		{
 			gameOver(true);
-			FightChoiceSlider.secondCompleted=true;
+			FightChoiceSlider.firstCompleted=true;
 		}
 	}
 
@@ -265,6 +275,10 @@ public class EnemyStatus : MonoBehaviour {
 	{
 		anim.SetInteger ("AnimationToStart", 0);
 		timeRemaining = Random.Range (minTimeBetweenEvents, maxTimeBetweenEvents);
+		if (enraged)
+			model.renderer.material.mainTexture = lowNormal;
+		else
+			model.renderer.material.mainTexture = highNormal;
 	}
 
 	public void gameOver(bool playerWon)
@@ -362,4 +376,14 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			bottle.SetActive(true);
 	}
+
+
+	public void atackTexture()
+	{
+		if (enraged)
+			model.renderer.material.mainTexture = lowAttack;
+		else
+			model.renderer.material.mainTexture = highAttack;
+	}
+
 }

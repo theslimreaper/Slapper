@@ -27,6 +27,8 @@ public class FightChoiceSlider : MonoBehaviour {
 	int currentFightNumber=1;
 	float temp=0.0f;
 	public float timeToShift=.5f;
+
+
 	// Use this for initialization
 	void Start () 
 	{

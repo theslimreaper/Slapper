@@ -36,6 +36,16 @@ public class EnemyStatus : MonoBehaviour {
 	bool vulnerable;
 	public Image[] onHitImages;
 	public GameObject bottle;
+	bool enraged;
+
+
+	
+	
+	public Texture highNormal;
+	public Texture highSpeech;
+	public Texture lowNormal;
+	public Texture lowSpeech;
+	public GameObject model;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
@@ -45,6 +55,7 @@ public class EnemyStatus : MonoBehaviour {
 		maxEnemyHealth = enemyhealth;
 		leftSystem = leftHand.GetComponent<ParticleSystem> ();
 		rightSystem = rightHand.GetComponent<ParticleSystem> ();
+		enraged = false;
 	}
 	
 	// Update is called once per frame
@@ -95,7 +106,11 @@ public class EnemyStatus : MonoBehaviour {
 		LightShifter.hit (enemyhealth/maxEnemyHealth);
 		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth;//update health bar
 		if(enemyhealth/maxEnemyHealth <.35f)//enrage if below 35% of total health
+		{
 			anim.SetBool("Enraged",true);
+			enraged=true;
+			model.renderer.material.mainTexture=lowNormal;
+		}
 		if(enemyhealth<=0)//when he dies go to the gameover with a success
 		{
 			gameOver(true);
@@ -106,42 +121,70 @@ public class EnemyStatus : MonoBehaviour {
 		speechBubble.enabled = true;
 		message.enabled = true;
 		message.text="CHECK ME OUT";
+		if(enraged)
+			model.renderer.material.mainTexture=lowSpeech;
+		else
+			model.renderer.material.mainTexture=highSpeech;
 	}
 	public void tauntTalk()
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
 		message.text="COME AT ME";
+		if(enraged)
+			model.renderer.material.mainTexture=lowSpeech;
+		else
+			model.renderer.material.mainTexture=highSpeech;
 	}
 	public void slapTalk()
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
 		message.text="WASSUP";
+		if(enraged)
+			model.renderer.material.mainTexture=lowSpeech;
+		else
+			model.renderer.material.mainTexture=highSpeech;
 	}
-	public void endTalk(){
-		speechBubble.enabled=false;
-		message.enabled = false;
-	}
+
 	public void swapSlapTalk()
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
 		message.text="YOU READY FOR THIS?";
+		if(enraged)
+			model.renderer.material.mainTexture=lowSpeech;
+		else
+			model.renderer.material.mainTexture=highSpeech;
 	}
 	public void slapClapTalk()
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
 		message.text="WHATCHA GON DO BOUT IT";
+		if(enraged)
+			model.renderer.material.mainTexture=lowSpeech;
+		else
+			model.renderer.material.mainTexture=highSpeech;
 	}
 	public void youBastardTalk()
 	{
 		speechBubble.enabled = true;
 		message.enabled = true;
 		message.text="aww look at ya";
+		if(enraged)
+			model.renderer.material.mainTexture=lowSpeech;
+		else
+			model.renderer.material.mainTexture=highSpeech;
 	}
-
+	public void endTalk(){
+		speechBubble.enabled=false;
+		message.enabled = false;
+		if(enraged)
+			model.renderer.material.mainTexture=lowNormal;
+		else
+			model.renderer.material.mainTexture=highNormal;
+	}
 	public void LeftHandRightAttack()//four different ways the normal attacks would be delivered
 	{
 		if(playerStat.dodgeRight==false)//if the player isn't dodging

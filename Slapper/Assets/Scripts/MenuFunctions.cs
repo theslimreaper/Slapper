@@ -34,14 +34,7 @@ public class MenuFunctions : MonoBehaviour {
 				androidOnlyObjects[i].SetActive(false);
 			}
 		}
-		if (accelerometer == true)
-		{
-			accelerometerChecked.enabled=true;
-		}
-		else
-		{
-			accelerometerChecked.enabled=false;
-		}
+
 
 
 		if(Application.loadedLevelName!="Main Menu" && Application.platform == RuntimePlatform.Android && accelerometer==false)//if on android and not in the main menu show the dodge buttons

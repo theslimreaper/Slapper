@@ -37,8 +37,6 @@ public class CameraControl : MonoBehaviour {
 		Vector3 leftPos = cameraPos - camMove;
 		Vector3 rightPos = cameraPos + camMove;
 		status = player.GetComponent<PlayerStatus>();
-		if (player ==null)
-						print ("no player found");
 		if(status.dodgeLeft==true){
 			transform.position = Vector3.Lerp(transform.position, leftPos, smooth * Time.deltaTime);
 			transform.rotation = Quaternion.Slerp(transform.rotation, lRotate, smooth * Time.deltaTime);

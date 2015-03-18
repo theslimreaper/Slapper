@@ -304,7 +304,7 @@ public class EnemyStatus : MonoBehaviour {
 			vulnerable=true;
 
 		}
-		print ("vulnerable" + vulnerable);
+//		print ("vulnerable" + vulnerable);
 	}
 	public void hitOff()
 	{

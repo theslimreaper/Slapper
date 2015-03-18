@@ -1,58 +1,97 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class FightChoiceSlider : MonoBehaviour {
-	Vector3 startingLocation;
-	Vector3 endLocation;
-	bool needsMovement;
-	bool hasMoved=false;
-	int  totalFights=3;
-	int currentFight = 1;
-	public int speed=5;
-	bool direction;//positive for next negative for previous
+	public Camera mainCamera;
+	public Image header;
+	public Image quote;
+	public Button fightButton;
+
+	public GameObject firstCharacter;
+	public Sprite firstHeader;
+	public Sprite firstQuote;
+	public static bool firstCompleted = true;
+
+	public GameObject secondCharacter;
+	public Sprite secondHeader;
+	public Sprite secondQuote;
+	public static bool secondCompleted=false;
+
+	public GameObject thirdCharacter;
+	public Sprite thirdHeader;
+	public Sprite thirdQuote;
+	public static bool thirdCompleted = false;
+
+	Vector3 startPos= new Vector3 (1,1,-10);
+	int currentFightNumber=1;
+	float temp=0.0f;
+	public float timeToShift=.5f;
 	// Use this for initialization
-	void Start () {
-		startingLocation = transform.position;
+	void Start () 
+	{
+	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
+		if (currentFightNumber == 1) {
+			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (1,1,-10),temp/timeToShift);//(startPos.x-transform.position.x)/startPos.x)
+			temp+=Time.deltaTime;
+			firstCharacter.renderer.material.SetColor ("_Color", Color.white);
+			secondCharacter.renderer.material.SetColor ("_Color", Color.black);
+			thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
 
-		if(needsMovement)
-		{
-			hasMoved=true;
-			transform.position=new Vector3 (transform.position.x+speed,transform.position.y,transform.position.z);
-			if (this.transform.position==endLocation||(transform.position.x>endLocation.x&&direction)||transform.position.x<endLocation.x && !direction)
-				needsMovement=false;
+			header.sprite=firstHeader;
+			quote.sprite=firstQuote;
+			fightButton.interactable=true;
+			}
+		if (currentFightNumber == 2) {
+			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (19,1,-10),temp/timeToShift);	
+			temp+=Time.deltaTime;
+			firstCharacter.renderer.material.SetColor ("_Color", Color.black);
+			secondCharacter.renderer.material.SetColor ("_Color", Color.black);
+			thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
+
+			header.sprite=secondHeader;
+			quote.sprite=secondQuote;
+
+			if(secondCompleted)
+				fightButton.interactable=true;
+			else
+				fightButton.interactable=false;
+			}
+		if (currentFightNumber == 3) {
+			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (34,1,-10),temp/timeToShift);
+			temp+=Time.deltaTime;
+			firstCharacter.renderer.material.SetColor ("_Color", Color.black);
+			secondCharacter.renderer.material.SetColor ("_Color", Color.black);
+			thirdCharacter.renderer.material.SetColor ("_Color", Color.black);
+
+			header.sprite=thirdHeader;
+			quote.sprite=thirdQuote;
+
+			if(thirdCompleted)
+				fightButton.interactable=true;
+			else
+				fightButton.interactable=false;
+			}
 		}
+
+	public void nextFightButton()
+	{
+	if (currentFightNumber < 3)
+			currentFightNumber++;
+		startPos = mainCamera.transform.position;
+		temp = 0;
+	}
+	public void previousFightButton()
+	{
+		if(currentFightNumber>1)
+			currentFightNumber--;
+		startPos = mainCamera.transform.position;
+		temp = 0;
 	}
 
-	public void nextFightButton(){
-		if(currentFight<totalFights&&needsMovement==false)
-		{
-			needsMovement=true;
-			endLocation=new Vector2(transform.position.x-1500,transform.position.y);
-			print (endLocation.x+" "+endLocation.y);
-			startingLocation=transform.position;
-			if(speed>0)
-				speed*=-1;
-			currentFight++;
-			direction=true;
-		}
-	}
-	public void previousFightButton(){
-		if (currentFight > 1&&needsMovement==false) 
-		{
-			needsMovement=true;
-			endLocation=new Vector3(transform.position.x+1500,transform.position.y,transform.position.z);
-			startingLocation=transform.position;
-			if(speed<0)
-				speed*=-1;
-			currentFight--;
-		}
-	}
-	public void incrementCurrent(){
-		if(currentFight<totalFights)
-			currentFight++;
-	}
 }

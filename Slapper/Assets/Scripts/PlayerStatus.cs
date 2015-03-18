@@ -41,13 +41,13 @@ public class PlayerStatus : MonoBehaviour {
 	void Update () {
 		if (Application.platform == RuntimePlatform.WindowsPlayer||Application.platform==RuntimePlatform.WindowsEditor)
 		{
-			if(Input.GetKeyDown(KeyCode.Z)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if(Input.GetKeyDown(KeyCode.Z)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 			   beginLeftDodgeAnimation();
 			if(Input.GetKeyDown(KeyCode.X))
 				beginLeftAttackAnimation();
 			if(Input.GetKeyDown(KeyCode.N))
 				beginRightAttackAnimation();
-			if(Input.GetKeyDown(KeyCode.M)&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if(Input.GetKeyDown(KeyCode.M)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 				beginRightDodgeAnimation();
 		//release the dodge
 			if(Input.GetKeyUp(KeyCode.Z))
@@ -61,9 +61,9 @@ public class PlayerStatus : MonoBehaviour {
 			{
 				Vector3 currentDir;
 				currentDir.x = Input.acceleration.x;
-				if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				if(currentDir.x<-0.25 &&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 					beginLeftDodgeAnimation();
-				if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				if(currentDir.x>0.25&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 					beginRightDodgeAnimation();
 				if(currentDir.x>-0.25)
 					anim.SetBool("DodgeLeft", false);
@@ -125,9 +125,9 @@ public class PlayerStatus : MonoBehaviour {
 			{
 				Vector3 currentDir;
 				currentDir.x = Input.acceleration.x;
-				if(currentDir.x<-0.25 &&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				if(currentDir.x<-0.25 &&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 					beginLeftAttackAnimation();
-				if(currentDir.x>0.25&&anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				if(currentDir.x>0.25&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 					beginRightAttackAnimation();
 			}
 			else if(ControlsSetup.attackChoice==3)//attack swipe
@@ -147,12 +147,12 @@ public class PlayerStatus : MonoBehaviour {
 					{
 						if(fp.x-lp.x>swipeSens)//left swipe
 						{
-							if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+							if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 								beginRightAttackAnimation();
 						}
 						else if(fp.x-lp.x<-swipeSens)//right swipe
 						{
-							if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+							if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 								beginLeftAttackAnimation();
 						}
 					}
@@ -197,28 +197,28 @@ public class PlayerStatus : MonoBehaviour {
 	public void leftAttackButton(){
 		if(ControlsSetup.attackChoice==2)
 		{
-			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 				beginLeftAttackAnimation();
 		}
 	}
 	public void rightAttackButton(){
 		if(ControlsSetup.attackChoice==2)
 		{
-			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 				beginRightAttackAnimation();
 		}
 	}
 	public void leftDodgeButton(){
 		if(ControlsSetup.dodgeChoice==2)
 		{
-			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 				beginLeftDodgeAnimation();
 		}
 	}
 	public void rightDodgeButton(){
 		if(ControlsSetup.dodgeChoice==2)
 		{
-			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 				beginRightDodgeAnimation();
 		}
 	}

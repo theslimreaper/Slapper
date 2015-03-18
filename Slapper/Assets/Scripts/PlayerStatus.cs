@@ -23,7 +23,8 @@ public class PlayerStatus : MonoBehaviour {
 	public float maxPlayerHealth;
 	EnemyStatus enemyStat;
 	Animator anim;
-	public int headBobTimer=350;
+	public float headBobTimer=350;
+	float maxTimer;
 	int currenttime;
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,7 @@ public class PlayerStatus : MonoBehaviour {
 		Time.timeScale = MenuFunctions.gameSpeed;
 	//	print (MenuFunctions.gameSpeed);
 		maxPlayerHealth = playersHealth;
+		maxTimer = headBobTimer;
 		       
 	}
 
@@ -188,7 +190,7 @@ public class PlayerStatus : MonoBehaviour {
 		if (currenttime > headBobTimer) {
 			anim.SetBool ("HeadMove", true);
 			currenttime=0;
-			headBobTimer=Random.Range (300,500);
+			headBobTimer=Random.Range (maxTimer*.75f,maxTimer*1.25f);
 			}
 		currenttime++;
 	}

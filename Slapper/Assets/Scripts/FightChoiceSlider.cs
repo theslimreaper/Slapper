@@ -7,11 +7,11 @@ public class FightChoiceSlider : MonoBehaviour {
 	public Image header;
 	public Image quote;
 	public Button fightButton;
-
+	public string[] fightScenes;
 	public GameObject firstCharacter;
 	public Sprite firstHeader;
 	public Sprite firstQuote;
-	public static bool firstCompleted = true;
+	public static bool firstCompleted = false;
 
 	public GameObject secondCharacter;
 	public Sprite secondHeader;
@@ -42,13 +42,16 @@ public class FightChoiceSlider : MonoBehaviour {
 			previousFightButton ();
 		if(Input.GetKeyDown(KeyCode.M))
 			nextFightButton();
-
+		if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.N)||Input.GetKeyDown(KeyCode.X))
+			if(currentFightNumber==1||(currentFightNumber==2&&firstCompleted)||(currentFightNumber==3&&secondCompleted))
+				Application.LoadLevel(fightScenes[currentFightNumber-1]);
+			
 
 
 
 
 		if (currentFightNumber == 1) {
-			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (1,1,-10),temp/timeToShift);//(startPos.x-transform.position.x)/startPos.x)
+			mainCamera.transform.position=Vector3.Lerp(startPos, new Vector3 (1,1,-10),temp/timeToShift);
 			temp+=Time.deltaTime;
 
 			header.sprite=firstHeader;
@@ -101,5 +104,8 @@ public class FightChoiceSlider : MonoBehaviour {
 		startPos = mainCamera.transform.position;
 		temp = 0;
 	}
-
+	public void loadFight()
+		{
+			Application.LoadLevel (fightScenes [currentFightNumber - 1]);
+		}
 }

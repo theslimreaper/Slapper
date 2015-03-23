@@ -24,6 +24,10 @@ public class FightChoiceSlider : MonoBehaviour {
 	public Sprite thirdQuote;
 	public static bool thirdCompleted = false;
 
+	private Vector2 fp=new Vector2();
+	private Vector2 lp=new Vector2();
+	public float swipeSens = 50.0f;
+
 
 	public Sprite noHeader;
 	public Sprite noQuote;
@@ -42,15 +46,43 @@ public class FightChoiceSlider : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyDown (KeyCode.Z))
-			previousFightButton ();
-		if(Input.GetKeyDown(KeyCode.M))
-			nextFightButton();
-		if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.N)||Input.GetKeyDown(KeyCode.X))
-			if(currentFightNumber==1||(currentFightNumber==2&&firstCompleted)||(currentFightNumber==3&&secondCompleted))
-				Application.LoadLevel(fightScenes[currentFightNumber-1]);
+		if (Application.platform == RuntimePlatform.WindowsPlayer||Application.platform==RuntimePlatform.WindowsEditor)
+		{
+			if (Input.GetKeyDown (KeyCode.Z))
+				previousFightButton ();
+			if(Input.GetKeyDown(KeyCode.M))
+				nextFightButton();
+			if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.N)||Input.GetKeyDown(KeyCode.X))
+				if(currentFightNumber==1||(currentFightNumber==2&&firstCompleted)||(currentFightNumber==3&&secondCompleted))
+					Application.LoadLevel(fightScenes[currentFightNumber-1]);
+		}
 			
-
+		if (Application.platform == RuntimePlatform.Android)
+		{
+			foreach(Touch touch in Input.touches)
+			{
+				if(touch.phase==TouchPhase.Began)
+				{
+					fp=touch.position;
+					lp=touch.position;
+				}
+				if(touch.phase==TouchPhase.Moved)
+				{
+					lp=touch.position;
+				}
+				if(touch.phase==TouchPhase.Ended)
+				{
+					if(fp.x-lp.x>swipeSens)//left swipe
+					{
+						nextFightButton();
+					}
+					else if(fp.x-lp.x<-swipeSens)//right swipe
+					{
+						previousFightButton ();
+					}
+				}
+			}
+		}
 
 
 

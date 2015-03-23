@@ -4,6 +4,7 @@ using System.Collections;
 
 public class MenuFunctions : MonoBehaviour {
 	public Image Options;
+	public Image Options2;
 	public Text volumeIndicator;
 	public Text speedIndicator;
 	public static float volumeLevel=100.0f;
@@ -128,12 +129,12 @@ public class MenuFunctions : MonoBehaviour {
 		if (AudioListener.volume==0)
 		{
 			AudioListener.volume=volumeLevel;
-			Options.sprite=unmuted;
+			Options2.sprite=unmuted;
 		}
 		else
 		{
 			AudioListener.volume=0;
-			Options.sprite=muted;
+			Options2.sprite=muted;
 		}
 	}
 

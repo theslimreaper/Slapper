@@ -29,7 +29,7 @@ public class FightChoiceSlider : MonoBehaviour {
 	public Sprite noQuote;
 	Vector3 startPos= new Vector3 (1,1,-10);
 	int currentFightNumber=1;
-	float temp=0.0f;
+	float temp=1.0f;
 	public float timeToShift=.5f;
 
 
@@ -100,18 +100,19 @@ public class FightChoiceSlider : MonoBehaviour {
 				fightButton.interactable=false;
 			}
 		}
+
 	}
 
 	public void nextFightButton()
 	{
-	if (currentFightNumber < 3)
+	if (currentFightNumber < 3 && temp>=.5f)
 			currentFightNumber++;
 		startPos = mainCamera.transform.position;
 		temp = 0;
 	}
 	public void previousFightButton()
 	{
-		if(currentFightNumber>1)
+		if(currentFightNumber>1 && temp>=.5f)
 			currentFightNumber--;
 		startPos = mainCamera.transform.position;
 		temp = 0;

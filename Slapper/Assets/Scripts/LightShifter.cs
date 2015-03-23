@@ -26,7 +26,7 @@ public class LightShifter : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		currentTime-=Time.deltaTime;
 		if(currentTime<=0)
 		{

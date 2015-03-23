@@ -14,6 +14,8 @@ public class PlayerStatus : MonoBehaviour {
 	private Vector2 fp=new Vector2();
 	private Vector2 lp=new Vector2();
 	public float swipeSens = 50f;
+	public bool controllable = true;
+	private int flinchTime = 0;
 	public bool rewardOn=true;
 	public Image rewardBar;
 	public Text rewardText;
@@ -43,6 +45,7 @@ public class PlayerStatus : MonoBehaviour {
 	void Update () {
 		if (Application.platform == RuntimePlatform.WindowsPlayer||Application.platform==RuntimePlatform.WindowsEditor)
 		{
+			if(controllable){
 			if(Input.GetKeyDown(KeyCode.Z)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
 			   beginLeftDodgeAnimation();
 			if(Input.GetKeyDown(KeyCode.X))
@@ -56,9 +59,10 @@ public class PlayerStatus : MonoBehaviour {
 				anim.SetBool("DodgeLeft", false);
 			if(Input.GetKeyUp(KeyCode.M))
 				anim.SetBool("DodgeRight",false);
-		}
+			}}
 		if (Application.platform == RuntimePlatform.Android&&MenuFunctions.accelerometer==true)
 		{
+			if(controllable){
 			if(ControlsSetup.dodgeChoice==1)//dodge tilt controls
 			{
 				Vector3 currentDir;
@@ -185,8 +189,10 @@ public class PlayerStatus : MonoBehaviour {
 					}
 				}
 			}
-		}
-
+			}}
+		flinchTime--;
+		if(flinchTime<=0)
+			controllable=true;
 		if (currenttime > headBobTimer) {
 			anim.SetBool ("HeadMove", true);
 			currenttime=0;
@@ -339,5 +345,12 @@ public class PlayerStatus : MonoBehaviour {
 	{
 		anim.SetBool ("HeadMove", false);
 	}
+
+	public void flinch()
+	{
+		controllable = false;
+		flinchTime=30;
+	}
+
 }
 

@@ -201,6 +201,7 @@ public class EnemyStatus : MonoBehaviour {
 		if(playerStat.dodgeRight==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
+			playerStat.flinch();
 			playerStat.updateRewardBar(false);
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 			audio.Play ();
@@ -219,6 +220,7 @@ public class EnemyStatus : MonoBehaviour {
 		if(playerStat.dodgeLeft==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
+			playerStat.flinch();
 			playerStat.updateRewardBar(false);
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 			audio.Play ();
@@ -238,6 +240,7 @@ public class EnemyStatus : MonoBehaviour {
 		if(playerStat.dodgeLeft==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
+			playerStat.flinch();
 			playerStat.updateRewardBar(false);
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 			audio.Play ();
@@ -257,6 +260,7 @@ public class EnemyStatus : MonoBehaviour {
 		if(playerStat.dodgeRight==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
+			playerStat.flinch();
 			playerStat.updateRewardBar(false);
 			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 			audio.Play ();
@@ -325,6 +329,7 @@ public class EnemyStatus : MonoBehaviour {
 	public void LeftHandUnblockable()
 	{
 		playerStat.playersHealth--;
+		playerStat.flinch();
 		playerStat.updateRewardBar(false);
 		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 		audio.Play ();
@@ -339,6 +344,7 @@ public class EnemyStatus : MonoBehaviour {
 	public void RightHandUnblockable()
 	{
 		playerStat.playersHealth--;
+		playerStat.flinch();
 		playerStat.updateRewardBar(false);
 		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
 		audio.Play ();

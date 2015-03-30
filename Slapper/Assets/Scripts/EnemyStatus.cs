@@ -3,16 +3,22 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class EnemyStatus : MonoBehaviour {
+	[HideInInspector]
 	public bool vulnerableLeft;
+	[HideInInspector]
 	public bool vulnerableRight;
-	public int enemyhealth;
-	float maxEnemyHealth;
-	Animator anim;
-	public Text message;
+	//the players gameobject
+	public GameObject player;
 
+	//finish screen objects
+	[Header("Finish Screen items")]
+	public Text message;
 	public Image resultsBackground;
 	public GameObject winAnimation;
 	public GameObject loseAnimation;
+
+	//UI
+	[Header("UI")]
 	public Image resultsSpeech;
 	public Sprite winSpeech;
 	public Sprite loseSpeech;
@@ -20,27 +26,31 @@ public class EnemyStatus : MonoBehaviour {
 	public Sprite winResult;
 	public Sprite loseResult;
 	public Image speechBubble;
-	public GameObject player;
-	PlayerStatus playerStat;
+	public int enemyhealth;//current health
+	public Image EnemyHealthbar;
+	//time for attacks to start
 	public float maxTimeBetweenEvents=2;
 	public float minTimeBetweenEvents=1;
 	float timeRemaining;
-	int randomNumberHolder;
-	public Image EnemyHealthbar;
+
+	//particle system for each and are controlled by these
+	[Header("Particle system for hands")]
 	public GameObject leftHand;
-	public GameObject rightHand;
 	ParticleSystem leftSystem;
+	public GameObject rightHand;
 	ParticleSystem rightSystem;
-	bool needReset=false;
-	LightShifter lightsController;
-	bool vulnerable;
+
+
+	[Header("Images to convey hits")]
 	public Image[] onHitImages;
+	//props
+	[Header("Props")]
 	public GameObject bottle;
-	bool enraged;
-
-
-	
-	
+	public GameObject hatHead;
+	public GameObject hatFloor;
+	public float maxDelayFinishScreen = 1.0f;
+	//textures to swap between in animations and the model that uses the textures
+	[Header("Texture Objects")]
 	public Texture highNormal;
 	public Texture highSpeech;
 	public Texture highHit;
@@ -50,6 +60,19 @@ public class EnemyStatus : MonoBehaviour {
 	public Texture lowHit;
 	public Texture lowAttack;
 	public GameObject model;
+
+	bool gameOverCalled=false;
+	bool enraged;
+	bool needReset=false;
+	LightShifter lightsController;
+	bool vulnerable;
+	int randomNumberHolder;
+	float maxEnemyHealth;
+	Animator anim;
+	PlayerStatus playerStat;
+	float gameOverTimer=0.0f;
+
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
@@ -95,13 +118,23 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			timeRemaining-=Time.deltaTime;
 		}
-
+		if(gameOverTimer>0)//if the timers been started continue it
+			gameOverTimer+=Time.deltaTime;
+		if(gameOverTimer>=maxDelayFinishScreen&& !gameOverCalled)
+		{
+			gameOver (true);
+			gameOverCalled=true;
+		}
 	
 	}
 	public void hit(int damage)//call when enemy is hit
 	{
 			enemyhealth-= damage;//lose one health
-			anim.SetBool("Hit",true);
+		if (enemyhealth <= 0)
+			anim.SetBool ("NoHealth", true);
+
+		anim.SetBool("Hit",true);
+
 		if(vulnerable)
 		{
 			anim.SetBool ("vulnerable",true);
@@ -121,11 +154,6 @@ public class EnemyStatus : MonoBehaviour {
 			model.renderer.material.mainTexture = lowHit;
 		else
 			model.renderer.material.mainTexture=highHit;
-		if(enemyhealth<=0)//when he dies go to the gameover with a success
-		{
-			gameOver(true);
-			FightChoiceSlider.firstCompleted=true;
-		}
 	}
 
 	public void FlexTalk(){//call during vulnerable animation 
@@ -137,6 +165,7 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			model.renderer.material.mainTexture=highSpeech;
 	}
+
 	public void tauntTalk()
 	{
 		speechBubble.enabled = true;
@@ -147,6 +176,7 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			model.renderer.material.mainTexture=highSpeech;
 	}
+
 	public void slapTalk()
 	{
 		speechBubble.enabled = true;
@@ -168,6 +198,7 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			model.renderer.material.mainTexture=highSpeech;
 	}
+
 	public void slapClapTalk()
 	{
 		speechBubble.enabled = true;
@@ -178,6 +209,8 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			model.renderer.material.mainTexture=highSpeech;
 	}
+
+
 	public void youBastardTalk()
 	{
 		speechBubble.enabled = true;
@@ -188,6 +221,8 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			model.renderer.material.mainTexture=highSpeech;
 	}
+
+	//hides the speech bubble when the enemy is done talking
 	public void endTalk(){
 		speechBubble.enabled=false;
 		message.enabled = false;
@@ -196,7 +231,9 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			model.renderer.material.mainTexture=highNormal;
 	}
-	public void LeftHandRightAttack()//four different ways the normal attacks would be delivered
+
+	//called if the left hand is hitting the right side of the player
+	public void LeftHandRightAttack()
 	{
 		if(playerStat.dodgeRight==false)//if the player isn't dodging
 		{
@@ -215,6 +252,8 @@ public class EnemyStatus : MonoBehaviour {
 		}
 		playerStat.updateRewardBar(true);
 	}
+
+	//called for when the left hand is hitting the left side of the player
 	public void LeftHandLeftAttack()
 	{
 		if(playerStat.dodgeLeft==false)//if the player isn't dodging
@@ -235,6 +274,8 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			playerStat.updateRewardBar(true);
 	}
+
+	//called for when the right hand is hitting the left side of the player
 	public void RightHandLeftAttack()
 	{
 		if(playerStat.dodgeLeft==false)//if the player isn't dodging
@@ -255,6 +296,8 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			playerStat.updateRewardBar(true);
 	}
+
+	//called for when the right hand of the enemy is hitting the right side of the player
 	public void RightHandRightAttack()
 	{
 		if(playerStat.dodgeRight==false)//if the player isn't dodging
@@ -275,6 +318,8 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			playerStat.updateRewardBar(true);
 	}
+
+	//called at the end of the animation to reset to idle
 	public void endAnimation()
 	{
 		anim.SetInteger ("AnimationToStart", 0);
@@ -285,6 +330,7 @@ public class EnemyStatus : MonoBehaviour {
 			model.renderer.material.mainTexture = highNormal;
 	}
 
+	//call when the game ends, this brings up the results screen
 	public void gameOver(bool playerWon)
 	{
 		resultsBackground.gameObject.SetActive (true);
@@ -293,6 +339,7 @@ public class EnemyStatus : MonoBehaviour {
 			winAnimation.SetActive(true);
 			resultsSpeech.sprite=winSpeech;
 			resultsMain.sprite=winResult;
+			FightChoiceSlider.firstCompleted=true;
 		}
 		else
 		{
@@ -326,6 +373,7 @@ public class EnemyStatus : MonoBehaviour {
 	//	print ("right safe");
 	}
 
+	//called for when the left hand would hit the player with an undodgeable attack
 	public void LeftHandUnblockable()
 	{
 		playerStat.playersHealth--;
@@ -341,6 +389,8 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 	}
+
+	//called for when the right hand would hit the player with an undodgeable attack
 	public void RightHandUnblockable()
 	{
 		playerStat.playersHealth--;
@@ -356,6 +406,8 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 	}
+
+	//used to set the stage where he can be hit into the staggered animations
 	public void toggleVulnerable()
 	{
 		if(vulnerable==true)
@@ -370,12 +422,14 @@ public class EnemyStatus : MonoBehaviour {
 		}
 //		print ("vulnerable" + vulnerable);
 	}
+	//resets the animator controllers values to prevent incorrect animations
 	public void hitOff()
 	{
 		anim.SetBool ("Hit", false);
 		anim.SetBool ("vulnerable",false);
 	}
 
+	//toggle the visibility of the bottle for the drinking
 	public void toggleBottle(){
 		if (bottle.activeSelf)
 			bottle.SetActive (false);
@@ -383,7 +437,7 @@ public class EnemyStatus : MonoBehaviour {
 			bottle.SetActive(true);
 	}
 
-
+	//switches the texture for when hes about to attack
 	public void atackTexture()
 	{
 		if (enraged)
@@ -392,4 +446,15 @@ public class EnemyStatus : MonoBehaviour {
 			model.renderer.material.mainTexture = highAttack;
 	}
 
+	//swtiches the hat thats visible during the knockout animation
+	public void hatSwitch()
+	{
+		hatFloor.gameObject.SetActive (true);
+		hatHead.gameObject.SetActive (false);
+	}
+	//called at the end of the KO animation, starts a timer that will display the results screen at the end
+	public void waitBeforeGameover()
+	{
+		gameOverTimer = 0.1f;
+	}
 }

@@ -17,6 +17,7 @@ public class LightShifter : MonoBehaviour {
 	public Color color0 = Color.red;
 	public Color color1 = Color.blue;
 	static bool enraged=false;//when the boss is made speed it up
+	float temp=0;
 	// Use this for initialization
 	void Start () {
 		currentTime = directionChangeTimer;
@@ -69,7 +70,10 @@ public class LightShifter : MonoBehaviour {
 			spotLight2.enabled=true;
 		}
 		if(enraged==true)
-			PointLight.color=Color.Lerp(Color.blue, Color.red,Time.deltaTime);
+		{
+			PointLight.color=Color.Lerp(Color.blue, Color.red,temp);
+			temp+=2*Time.deltaTime;
+		}
 	}
 
 	public static void hit(float percent) {

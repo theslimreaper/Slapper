@@ -457,4 +457,15 @@ public class EnemyStatus : MonoBehaviour {
 	{
 		gameOverTimer = 0.1f;
 	}
+
+	public void toggleDrinkingMouth()
+	{
+		if (model.renderer.material.mainTexture==highNormal)
+			model.renderer.material.mainTexture=highHit;
+		else if(enemyhealth/maxEnemyHealth>.35)
+			model.renderer.material.mainTexture=highNormal;
+		else
+			model.renderer.material.mainTexture=lowNormal;
+	
+	}
 }

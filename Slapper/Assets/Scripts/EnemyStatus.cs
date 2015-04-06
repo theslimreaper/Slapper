@@ -71,7 +71,7 @@ public class EnemyStatus : MonoBehaviour {
 	Animator anim;
 	PlayerStatus playerStat;
 	float gameOverTimer=0.0f;
-
+	bool allowDodgeCall=false;
 
 	// Use this for initialization
 	void Start () {
@@ -102,13 +102,13 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			needReset=true;
 			randomNumberHolder=Random.Range(1,100);
-			if(randomNumberHolder<20)
+			if(randomNumberHolder<25)
 				anim.SetInteger("AnimationToStart",1);
-			else if(randomNumberHolder<40)
+			else if(randomNumberHolder<50)
 				anim.SetInteger("AnimationToStart",2);
-			else if(randomNumberHolder<60)
+			else if(randomNumberHolder<75)
 				anim.SetInteger("AnimationToStart",3);
-			else if(randomNumberHolder<80)
+			else if(randomNumberHolder<88)
 				anim.SetInteger("AnimationToStart",4);
 			else if(randomNumberHolder<=100)
 				anim.SetInteger("AnimationToStart",5);
@@ -127,9 +127,9 @@ public class EnemyStatus : MonoBehaviour {
 		}
 	
 	}
-	public void hit(int damage)//call when enemy is hit
+	public void hit()//call when enemy is hit
 	{
-			enemyhealth-= damage;//lose one health
+			enemyhealth-= 1;//lose one health
 		if (enemyhealth <= 0)
 			anim.SetBool ("NoHealth", true);
 
@@ -467,5 +467,11 @@ public class EnemyStatus : MonoBehaviour {
 		else
 			model.renderer.material.mainTexture=lowNormal;
 	
+	}
+	public void ToggleAllowDodge(){
+		if (allowDodgeCall==false)
+			allowDodgeCall=true;
+		else
+			allowDodgeCall=false;
 	}
 }

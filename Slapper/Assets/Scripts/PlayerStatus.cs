@@ -28,6 +28,8 @@ public class PlayerStatus : MonoBehaviour {
 	public float headBobTimer=350;
 	float maxTimer;
 	int currenttime;
+	bool allowDodgeCall=true;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in players animation tree
@@ -46,13 +48,13 @@ public class PlayerStatus : MonoBehaviour {
 		if (Application.platform == RuntimePlatform.WindowsPlayer||Application.platform==RuntimePlatform.WindowsEditor)
 		{
 			if(controllable){
-			if(Input.GetKeyDown(KeyCode.Z)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
+				if(Input.GetKeyDown(KeyCode.Z)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
 			   beginLeftDodgeAnimation();
 			if(Input.GetKeyDown(KeyCode.X))
 				beginLeftAttackAnimation();
 			if(Input.GetKeyDown(KeyCode.N))
 				beginRightAttackAnimation();
-			if(Input.GetKeyDown(KeyCode.M)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
+			if(Input.GetKeyDown(KeyCode.M)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
 				beginRightDodgeAnimation();
 		//release the dodge
 			if(Input.GetKeyUp(KeyCode.Z))
@@ -67,9 +69,9 @@ public class PlayerStatus : MonoBehaviour {
 			{
 				Vector3 currentDir;
 				currentDir.x = Input.acceleration.x;
-				if(currentDir.x<-0.25 &&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
+					if(currentDir.x<-0.25 &&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
 					beginLeftDodgeAnimation();
-				if(currentDir.x>0.25&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
+					if(currentDir.x>0.25&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
 					beginRightDodgeAnimation();
 				if(currentDir.x>-0.25)
 					anim.SetBool("DodgeLeft", false);
@@ -219,14 +221,14 @@ public class PlayerStatus : MonoBehaviour {
 	public void leftDodgeButton(){
 		if(ControlsSetup.dodgeChoice==2)
 		{
-			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
+			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove"))||allowDodgeCall)
 				beginLeftDodgeAnimation();
 		}
 	}
 	public void rightDodgeButton(){
 		if(ControlsSetup.dodgeChoice==2)
 		{
-			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")))
+			if((anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove"))||allowDodgeCall)
 				beginRightDodgeAnimation();
 		}
 	}
@@ -297,9 +299,9 @@ public class PlayerStatus : MonoBehaviour {
 		{
 			updateRewardBar (true);
 			if (rewardCounter < 5)//if 5 dodges without being hit double the damage
-					enemyStat.hit (1);						
+					enemyStat.hit ();						
 			else
-				enemyStat.hit (2);
+				enemyStat.hit ();
 			audio.Play ();
 			leftWrist.particleSystem.Emit (5);	
 			} 
@@ -310,9 +312,9 @@ public class PlayerStatus : MonoBehaviour {
 		{
 			updateRewardBar(true);
 			if(rewardCounter<5)//if 5 dodges without being hit double the damage
-				enemyStat.hit(1);
+				enemyStat.hit();
 			else
-				enemyStat.hit (2);
+				enemyStat.hit ();
 			audio.Play();
 			rightWrist.particleSystem.Emit (5);
 		}
@@ -351,6 +353,11 @@ public class PlayerStatus : MonoBehaviour {
 		controllable = false;
 		flinchTime=30;
 	}
-
+	public void ToggleAllowDodge(){//called during later frames of the attacks to allow transition into dodges
+		if (allowDodgeCall==false)
+			allowDodgeCall=true;
+		else
+			allowDodgeCall=false;
+	}
 }
 

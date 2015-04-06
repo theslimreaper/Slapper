@@ -141,7 +141,7 @@ public class EnemyStatus : MonoBehaviour {
 		}
 		onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		LightShifter.hit (enemyhealth/maxEnemyHealth);
-		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth;//update health bar
+		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth * .66f + .34f;//update health bar
 
 		if(enemyhealth/maxEnemyHealth <.35f)//enrage if below 35% of total health
 		{
@@ -240,7 +240,7 @@ public class EnemyStatus : MonoBehaviour {
 			playerStat.playersHealth--;
 			playerStat.flinch();
 			playerStat.updateRewardBar(false);
-			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
 			audio.Play ();
 			leftSystem.Emit (5);
 			if(playerStat.playersHealth<=0)
@@ -261,7 +261,7 @@ public class EnemyStatus : MonoBehaviour {
 			playerStat.playersHealth--;
 			playerStat.flinch();
 			playerStat.updateRewardBar(false);
-			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
 			audio.Play ();
 			leftSystem.Emit (5);
 			if(playerStat.playersHealth<=0)
@@ -283,7 +283,7 @@ public class EnemyStatus : MonoBehaviour {
 			playerStat.playersHealth--;
 			playerStat.flinch();
 			playerStat.updateRewardBar(false);
-			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
 			audio.Play ();
 			rightSystem.Emit (5);
 			if(playerStat.playersHealth<=0)
@@ -305,7 +305,7 @@ public class EnemyStatus : MonoBehaviour {
 			playerStat.playersHealth--;
 			playerStat.flinch();
 			playerStat.updateRewardBar(false);
-			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
 			audio.Play ();
 			leftSystem.Emit (5);
 			if(playerStat.playersHealth<=0)
@@ -379,7 +379,7 @@ public class EnemyStatus : MonoBehaviour {
 		playerStat.playersHealth--;
 		playerStat.flinch();
 		playerStat.updateRewardBar(false);
-		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
+		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
 		audio.Play ();
 		leftSystem.Emit (5);
 		if(playerStat.playersHealth<=0)
@@ -396,7 +396,7 @@ public class EnemyStatus : MonoBehaviour {
 		playerStat.playersHealth--;
 		playerStat.flinch();
 		playerStat.updateRewardBar(false);
-		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth;
+		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
 		audio.Play ();
 		rightSystem.Emit (5);
 		if(playerStat.playersHealth<=0)

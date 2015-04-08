@@ -43,11 +43,8 @@ public class EnemyStatus : MonoBehaviour {
 
 	[Header("Images to convey hits")]
 	public Image[] onHitImages;
-	//props
-	[Header("Props")]
-	public GameObject bottle;
-	public GameObject hatHead;
-	public GameObject hatFloor;
+
+
 	public float maxDelayFinishScreen = 1.0f;
 	//textures to swap between in animations and the model that uses the textures
 	[Header("Texture Objects")]
@@ -429,12 +426,7 @@ public class EnemyStatus : MonoBehaviour {
 	}
 
 	//toggle the visibility of the bottle for the drinking
-	public void toggleBottle(){
-		if (bottle.activeSelf)
-			bottle.SetActive (false);
-		else
-			bottle.SetActive(true);
-	}
+
 
 	//switches the texture for when hes about to attack
 	public void atackTexture()
@@ -446,11 +438,7 @@ public class EnemyStatus : MonoBehaviour {
 	}
 
 	//swtiches the hat thats visible during the knockout animation
-	public void hatSwitch()
-	{
-		hatFloor.gameObject.SetActive (true);
-		hatHead.gameObject.SetActive (false);
-	}
+
 	//called at the end of the KO animation, starts a timer that will display the results screen at the end
 	public void waitBeforeGameover()
 	{

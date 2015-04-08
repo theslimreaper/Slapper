@@ -71,7 +71,6 @@ public class EnemyStatus : MonoBehaviour {
 	Animator anim;
 	PlayerStatus playerStat;
 	float gameOverTimer=0.0f;
-	bool allowDodgeCall=false;
 
 	// Use this for initialization
 	void Start () {
@@ -468,10 +467,5 @@ public class EnemyStatus : MonoBehaviour {
 			model.renderer.material.mainTexture=lowNormal;
 	
 	}
-	public void ToggleAllowDodge(){
-		if (allowDodgeCall==false)
-			allowDodgeCall=true;
-		else
-			allowDodgeCall=false;
-	}
+
 }

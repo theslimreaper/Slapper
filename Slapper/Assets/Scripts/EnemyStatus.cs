@@ -127,7 +127,10 @@ public class EnemyStatus : MonoBehaviour {
 	{
 			enemyhealth-= 1;//lose one health
 		if (enemyhealth <= 0)
+		{
 			anim.SetBool ("NoHealth", true);
+			endTalk();
+		}
 
 		anim.SetBool("Hit",true);
 
@@ -137,7 +140,7 @@ public class EnemyStatus : MonoBehaviour {
 		}
 		onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		LightShifter.hit (enemyhealth/maxEnemyHealth);
-		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth * .66f + .34f;//update health bar
+		EnemyHealthbar.fillAmount= enemyhealth/ maxEnemyHealth * .68f + .32f;//update health bar
 
 		if(enemyhealth/maxEnemyHealth <.35f)//enrage if below 35% of total health
 		{

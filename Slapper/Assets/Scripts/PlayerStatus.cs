@@ -48,13 +48,13 @@ public class PlayerStatus : MonoBehaviour {
 		if (Application.platform == RuntimePlatform.WindowsPlayer||Application.platform==RuntimePlatform.WindowsEditor)
 		{
 			if(controllable){
-				if(Input.GetKeyDown(KeyCode.Z)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
+				if(Input.GetKey(KeyCode.Z)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
 			   beginLeftDodgeAnimation();
-			if(Input.GetKeyDown(KeyCode.X))
+			if(Input.GetKey(KeyCode.X))
 				beginLeftAttackAnimation();
-			if(Input.GetKeyDown(KeyCode.N))
+			if(Input.GetKey(KeyCode.N))
 				beginRightAttackAnimation();
-			if(Input.GetKeyDown(KeyCode.M)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
+			if(Input.GetKey(KeyCode.M)&&(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("HeadMove")||allowDodgeCall))
 				beginRightDodgeAnimation();
 		//release the dodge
 			if(Input.GetKeyUp(KeyCode.Z))

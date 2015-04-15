@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: fa55a6dc713c1da47a130738c7328a12
+guid: e671c1ee5659c12449c05841139cf8f7
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Bitch_Body
-    100004: Bitch_Phone
+    100000: Bitch_Body
+    100002: Bitch_Phone
+    100004: //RootNode
     100006: Bitch_Shades
     100008: Chest
     100010: Collar
@@ -30,9 +30,9 @@ ModelImporter:
     100048: R_Wrist
     100050: Root
     100052: Waist
-    400000: //RootNode
-    400002: Bitch_Body
-    400004: Bitch_Phone
+    400000: Bitch_Body
+    400002: Bitch_Phone
+    400004: //RootNode
     400006: Bitch_Shades
     400008: Chest
     400010: Collar

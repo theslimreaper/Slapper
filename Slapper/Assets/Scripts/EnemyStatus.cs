@@ -108,6 +108,7 @@ public class EnemyStatus : MonoBehaviour {
 				anim.SetInteger("AnimationToStart",4);
 			else if(randomNumberHolder<=100)
 				anim.SetInteger("AnimationToStart",5);
+			print (randomNumberHolder);
 		}
 		else
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")||anim.GetCurrentAnimatorStateInfo(0).IsName("Enraged Idle"))

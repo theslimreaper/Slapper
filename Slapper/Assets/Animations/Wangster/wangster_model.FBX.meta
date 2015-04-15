@@ -1,72 +1,31 @@
 fileFormatVersion: 2
-guid: 2984f46529b30cd448bdf0983eef7f55
+guid: 17f1eb291c2feff4f9d929155e4be240
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Bitch_Body
-    100002: //RootNode
-    100004: Bitch_Phone
-    100006: Bitch_Shades
-    100008: Chest
-    100010: Collar
-    100012: Head
-    100014: Hips
-    100016: L_Ankle
-    100018: L_Collar
-    100020: L_Elbow
-    100022: L_Hand
-    100024: L_Knee
-    100026: L_Shoulder
-    100028: L_Thigh
-    100030: L_Wrist
-    100032: Neck
-    100034: R_Ankle
-    100036: R_Collar
-    100038: R_Elbow
-    100040: R_Hand
-    100042: R_Knee
-    100044: R_Shoulder
-    100046: R_Thigh
-    100048: R_Wrist
-    100050: Root
-    100052: Waist
-    400000: Bitch_Body
-    400002: //RootNode
-    400004: Bitch_Phone
-    400006: Bitch_Shades
-    400008: Chest
-    400010: Collar
-    400012: Head
-    400014: Hips
-    400016: L_Ankle
-    400018: L_Collar
-    400020: L_Elbow
-    400022: L_Hand
-    400024: L_Knee
-    400026: L_Shoulder
-    400028: L_Thigh
-    400030: L_Wrist
-    400032: Neck
-    400034: R_Ankle
-    400036: R_Collar
-    400038: R_Elbow
-    400040: R_Hand
-    400042: R_Knee
-    400044: R_Shoulder
-    400046: R_Thigh
-    400048: R_Wrist
-    400050: Root
-    400052: Waist
-    2300000: Bitch_Phone
-    2300002: Bitch_Shades
-    3300000: Bitch_Phone
-    3300002: Bitch_Shades
-    4300000: Bitch_Shades
-    4300002: Bitch_Phone
-    4300004: Bitch_Body
-    7400000: Take 001
+    100000: Object
+    100002: Object001
+    100004: Object002
+    100006: Object003
+    100008: //RootNode
+    400000: Object
+    400002: Object001
+    400004: Object002
+    400006: Object003
+    400008: //RootNode
+    2300000: Object
+    2300002: Object001
+    2300004: Object002
+    2300006: Object003
+    3300000: Object
+    3300002: Object001
+    3300004: Object002
+    3300006: Object003
+    4300000: Object
+    4300002: Object001
+    4300004: Object002
+    4300006: Object003
     9500000: //RootNode
-    13700000: Bitch_Body
   materials:
     importMaterials: 1
     materialName: 0

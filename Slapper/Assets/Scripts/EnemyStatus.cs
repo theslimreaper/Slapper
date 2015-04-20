@@ -126,7 +126,9 @@ public class EnemyStatus : MonoBehaviour {
 	}
 	public void hit()//call when enemy is hit
 	{
-			enemyhealth-= 1;//lose one health
+		enemyhealth-= 1;//lose one health
+		playerStat.invuln=true;
+		playerStat.invulntimer=30;
 		if (enemyhealth <= 0)
 		{
 			anim.SetBool ("NoHealth", true);
@@ -235,7 +237,7 @@ public class EnemyStatus : MonoBehaviour {
 	//called if the left hand is hitting the right side of the player
 	public void LeftHandRightAttack()
 	{
-		if(playerStat.dodgeRight==false)//if the player isn't dodging
+		if(playerStat.dodgeRight==false&&playerStat.invuln==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
 			playerStat.flinch();
@@ -256,7 +258,7 @@ public class EnemyStatus : MonoBehaviour {
 	//called for when the left hand is hitting the left side of the player
 	public void LeftHandLeftAttack()
 	{
-		if(playerStat.dodgeLeft==false)//if the player isn't dodging
+		if(playerStat.dodgeLeft==false&&playerStat.invuln==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
 			playerStat.flinch();
@@ -278,7 +280,7 @@ public class EnemyStatus : MonoBehaviour {
 	//called for when the right hand is hitting the left side of the player
 	public void RightHandLeftAttack()
 	{
-		if(playerStat.dodgeLeft==false)//if the player isn't dodging
+		if(playerStat.dodgeLeft==false&&playerStat.invuln==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
 			playerStat.flinch();
@@ -300,7 +302,7 @@ public class EnemyStatus : MonoBehaviour {
 	//called for when the right hand of the enemy is hitting the right side of the player
 	public void RightHandRightAttack()
 	{
-		if(playerStat.dodgeRight==false)//if the player isn't dodging
+		if(playerStat.dodgeRight==false&&playerStat.invuln==false)//if the player isn't dodging
 		{
 			playerStat.playersHealth--;
 			playerStat.flinch();
@@ -376,35 +378,41 @@ public class EnemyStatus : MonoBehaviour {
 	//called for when the left hand would hit the player with an undodgeable attack
 	public void LeftHandUnblockable()
 	{
-		playerStat.playersHealth--;
-		playerStat.flinch();
-		playerStat.updateRewardBar(false);
-		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
-		audio.Play ();
-		leftSystem.Emit (5);
-		if(playerStat.playersHealth<=0)
+		if(playerStat.invuln==false)
 		{
-			gameOver(false);
+			playerStat.playersHealth--;
+			playerStat.flinch();
+			playerStat.updateRewardBar(false);
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
+			audio.Play ();
+			leftSystem.Emit (5);
+			if(playerStat.playersHealth<=0)
+			{
+				gameOver(false);
+			}
+			else
+				onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		}
-		else
-			onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 	}
 
 	//called for when the right hand would hit the player with an undodgeable attack
 	public void RightHandUnblockable()
 	{
-		playerStat.playersHealth--;
-		playerStat.flinch();
-		playerStat.updateRewardBar(false);
-		playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
-		audio.Play ();
-		rightSystem.Emit (5);
-		if(playerStat.playersHealth<=0)
+		if(playerStat.invuln==false)
 		{
-			gameOver(false);
+			playerStat.playersHealth--;
+			playerStat.flinch();
+			playerStat.updateRewardBar(false);
+			playerStat.playerHealthbar.fillAmount= playerStat.playersHealth/playerStat.maxPlayerHealth * .66f + .34f;
+			audio.Play ();
+			rightSystem.Emit (5);
+			if(playerStat.playersHealth<=0)
+			{
+				gameOver(false);
+			}
+			else
+				onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 		}
-		else
-			onHitImages [Random.Range (0, onHitImages.Length)].GetComponent<CanvasGroup> ().alpha = 1;
 	}
 
 	//used to set the stage where he can be hit into the staggered animations

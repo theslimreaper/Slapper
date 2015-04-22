@@ -1,0 +1,128 @@
+fileFormatVersion: 2
+guid: 797fe5175ff9888408ff546a9fa1d863
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bitch_Body
+    100002: //RootNode
+    100004: Bitch_Phone
+    100006: Bitch_Phone1
+    100008: Bitch_Shades
+    100010: Chest
+    100012: Collar
+    100014: Head
+    100016: Hips
+    100018: L_Ankle
+    100020: L_Collar
+    100022: L_Elbow
+    100024: L_Hand
+    100026: L_Knee
+    100028: L_Shoulder
+    100030: L_Thigh
+    100032: L_Wrist
+    100034: Neck
+    100036: R_Ankle
+    100038: R_Collar
+    100040: R_Elbow
+    100042: R_Hand
+    100044: R_Knee
+    100046: R_Shoulder
+    100048: R_Thigh
+    100050: R_Wrist
+    100052: Root
+    100054: Waist
+    400000: Bitch_Body
+    400002: //RootNode
+    400004: Bitch_Phone
+    400006: Bitch_Phone1
+    400008: Bitch_Shades
+    400010: Chest
+    400012: Collar
+    400014: Head
+    400016: Hips
+    400018: L_Ankle
+    400020: L_Collar
+    400022: L_Elbow
+    400024: L_Hand
+    400026: L_Knee
+    400028: L_Shoulder
+    400030: L_Thigh
+    400032: L_Wrist
+    400034: Neck
+    400036: R_Ankle
+    400038: R_Collar
+    400040: R_Elbow
+    400042: R_Hand
+    400044: R_Knee
+    400046: R_Shoulder
+    400048: R_Thigh
+    400050: R_Wrist
+    400052: Root
+    400054: Waist
+    2300000: Bitch_Phone
+    2300002: Bitch_Phone1
+    2300004: Bitch_Shades
+    3300000: Bitch_Phone
+    3300002: Bitch_Phone1
+    3300004: Bitch_Shades
+    4300000: Bitch_Phone1
+    4300002: Bitch_Shades
+    4300004: Bitch_Phone
+    4300006: Bitch_Body
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Bitch_Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

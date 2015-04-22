@@ -16,6 +16,8 @@ public class PlayerStatus : MonoBehaviour {
 	public float swipeSens = 50f;
 	public bool controllable = true;
 	private int flinchTime = 0;
+	public bool invuln=false;
+	public int invulntimer=0;
 	public bool rewardOn=true;
 	public Image rewardBar;
 	public Text rewardText;
@@ -195,6 +197,9 @@ public class PlayerStatus : MonoBehaviour {
 		flinchTime--;
 		if(flinchTime<=0)
 			controllable=true;
+		invulntimer--;
+		if(invulntimer<=0)
+			invuln=false;
 		if (currenttime > headBobTimer) {
 			anim.SetBool ("HeadMove", true);
 			currenttime=0;

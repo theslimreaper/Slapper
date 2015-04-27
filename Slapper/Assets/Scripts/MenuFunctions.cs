@@ -20,7 +20,7 @@ public class MenuFunctions : MonoBehaviour {
 	public Sprite unmuted;
 	public GameObject[] hideDuringOptions;
 	public Image controlsMenu;
-	// Use this for initialization
+
 	void Start () {
 	/*	if(GameObject.Find ("OptionsButton")!=null)
 		{
@@ -157,5 +157,6 @@ public class MenuFunctions : MonoBehaviour {
 			}
 		}
 	}
+
 
 }

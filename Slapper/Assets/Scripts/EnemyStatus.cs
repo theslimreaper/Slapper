@@ -98,13 +98,13 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			needReset=true;
 			randomNumberHolder=Random.Range(1,100);
-			if(randomNumberHolder<25)
+			if(randomNumberHolder<20)
 				anim.SetInteger("AnimationToStart",1);
-			else if(randomNumberHolder<50)
+			else if(randomNumberHolder<40)
 				anim.SetInteger("AnimationToStart",2);
-			else if(randomNumberHolder<75)
+			else if(randomNumberHolder<60)
 				anim.SetInteger("AnimationToStart",3);
-			else if(randomNumberHolder<88)
+			else if(randomNumberHolder<80)
 				anim.SetInteger("AnimationToStart",4);
 			else if(randomNumberHolder<=100)
 				anim.SetInteger("AnimationToStart",5);

@@ -32,6 +32,7 @@ public class PlayerStatus : MonoBehaviour {
 	int currenttime;
 	bool allowDodgeCall=true;
 
+	public bool bitchFight; //cheating to make the pendulum easier to code for.
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in players animation tree
@@ -309,7 +310,16 @@ public class PlayerStatus : MonoBehaviour {
 				enemyStat.hit ();
 			audio.Play ();
 			leftWrist.particleSystem.Emit (5);	
-			} 
+		} 
+		else
+		{
+			print ("registered bad hit");
+			if(bitchFight&&enemy.GetComponent<BitchOnlyFunctions>().leftCounterUp)
+		{
+				print ("start counter strike");
+				enemy.GetComponent<BitchOnlyFunctions>().leftCounterActivate();
+		}
+		}
 	}
 	public void rightHit(){//call during frame where your attack connects from the right
 	//	print ("right attack, vulnerable: " + enemyStat.vulnerableRight);
@@ -322,6 +332,15 @@ public class PlayerStatus : MonoBehaviour {
 				enemyStat.hit ();
 			audio.Play();
 			rightWrist.particleSystem.Emit (5);
+		}
+		else
+		{
+			print ("registered bad hit");
+			if(bitchFight&&enemy.GetComponent<BitchOnlyFunctions>().rightCounterUp)
+			{
+				print ("start counter strike");
+				enemy.GetComponent<BitchOnlyFunctions>().rightCounterActivate();
+			}
 		}
 	}
 	public void updateRewardBar(bool plus)

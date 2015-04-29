@@ -69,6 +69,8 @@ public class EnemyStatus : MonoBehaviour {
 	PlayerStatus playerStat;
 	float gameOverTimer=0.0f;
 
+
+	public int[] hitPercents;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
@@ -98,15 +100,15 @@ public class EnemyStatus : MonoBehaviour {
 		{
 			needReset=true;
 			randomNumberHolder=Random.Range(1,100);
-			if(randomNumberHolder<20)
+			if(randomNumberHolder<hitPercents[0])
 				anim.SetInteger("AnimationToStart",1);
-			else if(randomNumberHolder<40)
+			else if(randomNumberHolder<hitPercents[1])
 				anim.SetInteger("AnimationToStart",2);
-			else if(randomNumberHolder<60)
+			else if(randomNumberHolder<hitPercents[2])
 				anim.SetInteger("AnimationToStart",3);
-			else if(randomNumberHolder<80)
+			else if(randomNumberHolder<hitPercents[3])
 				anim.SetInteger("AnimationToStart",4);
-			else if(randomNumberHolder<=100)
+			else if(randomNumberHolder<=hitPercents[4])
 				anim.SetInteger("AnimationToStart",5);
 			print (randomNumberHolder);
 		}
@@ -335,6 +337,7 @@ public class EnemyStatus : MonoBehaviour {
 	//call when the game ends, this brings up the results screen
 	public void gameOver(bool playerWon)
 	{
+		Camera.main.GetComponent<DepthOfFieldScatter> ().enabled = false;
 		resultsBackground.gameObject.SetActive (true);
 		if(playerWon==true)
 		{

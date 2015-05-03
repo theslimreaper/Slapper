@@ -66,7 +66,7 @@ public class EnemyStatus : MonoBehaviour {
 	int randomNumberHolder;
 	float maxEnemyHealth;
 	Animator anim;
-	PlayerStatus playerStat;
+	PlayerStatusWangster playerStat;
 	float gameOverTimer=0.0f;
 
 
@@ -74,7 +74,7 @@ public class EnemyStatus : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
-		playerStat = player.GetComponent<PlayerStatus> ();
+		playerStat = player.GetComponent<PlayerStatusWangster> ();
 		timeRemaining = maxTimeBetweenEvents;
 		resultsBackground.gameObject.SetActive (false);
 		maxEnemyHealth = enemyhealth;
@@ -344,7 +344,8 @@ public class EnemyStatus : MonoBehaviour {
 			winAnimation.SetActive(true);
 			resultsSpeech.sprite=winSpeech;
 			resultsMain.sprite=winResult;
-			FightChoiceSlider.firstCompleted=true;
+			if(gameObject.tag=="bro") FightChoiceSlider.firstCompleted=true;
+			if(gameObject.tag=="bitch") FightChoiceSlider.secondCompleted=true;
 		}
 		else
 		{

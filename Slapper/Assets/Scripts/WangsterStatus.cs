@@ -323,7 +323,8 @@ public class WangsterStatus : MonoBehaviour {
 			winAnimation.SetActive(true);
 			resultsSpeech.sprite=winSpeech;
 			resultsMain.sprite=winResult;
-			FightChoiceSlider.firstCompleted=true;
+			if(gameObject.tag=="bro") FightChoiceSlider.firstCompleted=true;
+			if(gameObject.tag=="bitch") FightChoiceSlider.secondCompleted=true;
 		}
 		else
 		{

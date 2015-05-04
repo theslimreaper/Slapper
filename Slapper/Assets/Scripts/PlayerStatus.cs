@@ -375,7 +375,7 @@ public class PlayerStatus : MonoBehaviour {
 	public void flinch()
 	{
 		controllable = false;
-		flinchTime=30;
+		flinchTime=10;
 	}
 	public void ToggleAllowDodge(){//called during later frames of the attacks to allow transition into dodges
 		if (allowDodgeCall==false)

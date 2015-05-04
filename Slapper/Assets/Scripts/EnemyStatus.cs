@@ -66,7 +66,7 @@ public class EnemyStatus : MonoBehaviour {
 	int randomNumberHolder;
 	float maxEnemyHealth;
 	Animator anim;
-	PlayerStatusWangster playerStat;
+	PlayerStatus playerStat;
 	float gameOverTimer=0.0f;
 
 
@@ -74,7 +74,7 @@ public class EnemyStatus : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();//used to set parameters in enemy animation tree
-		playerStat = player.GetComponent<PlayerStatusWangster> ();
+		playerStat = player.GetComponent<PlayerStatus> ();
 		timeRemaining = maxTimeBetweenEvents;
 		resultsBackground.gameObject.SetActive (false);
 		maxEnemyHealth = enemyhealth;
